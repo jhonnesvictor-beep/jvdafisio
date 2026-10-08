@@ -107,6 +107,8 @@ a { color: inherit }
 .meta a { color: var(--acento); font-weight: 600; text-decoration: none }
 .meta a:hover { text-decoration: underline }
 .meta .forte { color: var(--acento); font-weight: 600 }
+.trio { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 12px; margin-inline: -16px; width: calc(100% + 32px); scrollbar-width: thin }
+@media (min-width: 760px) { .trio { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 760px } }
 .dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 440px; justify-self: center }
 .nota-mao { display: flex; align-items: center; gap: 8px; justify-content: center }
 .nota-mao svg { width: 40px; height: 28px; stroke: var(--acento); fill: none; stroke-width: 2; stroke-linecap: round }
@@ -292,9 +294,12 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   </div>
 </section>
 
-<section class="faixa clinica" aria-labelledby="t-avulso">
-  <div class="miolo">
-    <div class="dupla">
+<section class="faixa" aria-labelledby="t-avulso">
+  <div class="miolo centro">
+    <span class="olho">Vídeos avulsos</span>
+    <h2 class="h2" id="t-avulso">Também faço vídeo <em>sob encomenda.</em></h2>
+    <p class="sub">Não precisa de pacote mensal. Faço o vídeo que você precisa pra divulgar um curso, cobrir um evento ou contar o depoimento de um aluno. Alguns que já fiz:</p>
+    <div class="trio">
       <article class="reel">
         <div class="tela">
           <video data-auto src="midia/eb_promo.mp4" poster="midia/eb_promo.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo de divulgação da Formação em Osteopatia"></video>
@@ -310,18 +315,16 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <h3>Aftermovie do 1º fim de semana da Turma V</h3>
         <div class="meta"><span class="forte">Ebrafim</span><span>cobertura de evento</span></div>
       </article>
+      <article class="reel">
+        <div class="tela">
+          <video data-auto src="midia/lafeo_forum.mp4" poster="midia/lafeo_forum.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo do 3º Fórum LAFEO"></video>
+          <button class="som" type="button" aria-pressed="false">som</button>
+        </div>
+        <h3>3º Fórum LAFEO, Recovery nos Esportes</h3>
+        <div class="meta"><span class="forte">LAFEO</span><span>vídeo do evento</span></div>
+      </article>
     </div>
-    <div class="clinica-txt">
-      <span class="olho">Vídeos avulsos</span>
-      <h2 class="h2" id="t-avulso">Também faço vídeo <em>sob encomenda.</em></h2>
-      <p class="sub">Não precisa de pacote mensal. Faço o vídeo que você precisa pra divulgar um curso, cobrir um evento ou contar o depoimento de um aluno. Os dois ao lado eu fiz pra Ebrafim, escola de pós-graduação em osteopatia.</p>
-      <ul class="checks">
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>divulgação de curso, turma ou lançamento</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>aftermovie de evento, aula ou congresso</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>depoimento de aluno ou paciente, legendado</span></li>
-      </ul>
-      <div class="acoes"><a class="btn" href="#trabalhe">Quero um vídeo avulso →</a></div>
-    </div>
+    <a class="btn" href="#trabalhe">Quero um vídeo avulso →</a>
   </div>
 </section>
 
