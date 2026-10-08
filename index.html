@@ -93,7 +93,7 @@ a { color: inherit }
 @keyframes correr { to { transform: translateX(-50%) } }
 
 /* vídeos */
-.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 12px; margin-inline: -16px; scrollbar-width: thin; width: calc(100% + 32px) }
+.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 8px 16px 12px; margin-inline: -16px; scrollbar-width: thin; width: calc(100% + 32px) }
 @media (min-width: 760px) { .trilho { grid-auto-flow: row; grid-template-columns: repeat(5, 1fr); overflow: visible; margin-inline: 0; padding: 8px 0 0; width: 100% } }
 .reel { scroll-snap-align: start; display: grid; gap: 10px; align-content: start; min-width: 0; text-align: left }
 .tela { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 22px; overflow: hidden; background: var(--moldura); border: 5px solid var(--moldura); outline: 1px solid var(--linha); box-shadow: var(--sombra) }
@@ -107,7 +107,7 @@ a { color: inherit }
 .meta a { color: var(--acento); font-weight: 600; text-decoration: none }
 .meta a:hover { text-decoration: underline }
 .meta .forte { color: var(--acento); font-weight: 600 }
-.trio { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 12px; margin-inline: -16px; width: calc(100% + 32px); scrollbar-width: thin }
+.trio { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 8px 16px 12px; margin-inline: -16px; width: calc(100% + 32px); scrollbar-width: thin }
 @media (min-width: 760px) { .trio { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 760px } }
 .dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 440px; justify-self: center }
 .nota-mao { display: flex; align-items: center; gap: 8px; justify-content: center }
