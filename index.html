@@ -108,7 +108,7 @@ a { color: inherit }
 .meta a:hover { text-decoration: underline }
 .meta .forte { color: var(--acento); font-weight: 600 }
 .trio { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 8px 16px 12px; margin-inline: -16px; width: calc(100% + 32px); scrollbar-width: thin }
-@media (min-width: 760px) { .trio { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 760px } }
+@media (min-width: 900px) { .trio { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 1000px } }
 .dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 440px; justify-self: center }
 .nota-mao { display: flex; align-items: center; gap: 8px; justify-content: center }
 .nota-mao svg { width: 40px; height: 28px; stroke: var(--acento); fill: none; stroke-width: 2; stroke-linecap: round }
@@ -164,7 +164,68 @@ a { color: inherit }
 .fichas-trilho.volta { animation-direction: reverse }
 .fichas-trilho span { font: italic 400 1.15rem/1 var(--serif); border: 1px solid var(--linha); background: var(--cartao); border-radius: 999px; padding: 11px 18px; white-space: nowrap }
 
-footer { padding-inline: 16px; padding-block: 28px 40px; border-top: 1px solid var(--linha) }
+/* edição: texto à esquerda, celular à direita */
+@media (min-width: 860px) { .clinica.invertida .miolo { grid-template-columns: 1.2fr .8fr } }
+.apartir { font: 700 .72rem/1.3 var(--mono); letter-spacing: .08em; color: var(--acento) }
+
+/* pacotes */
+.porta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; background: var(--marinho); color: #F7FBFA; border: 1px solid rgba(127, 227, 222, .35); border-radius: 22px; padding: 22px 24px }
+.porta > div { display: grid; gap: 6px; min-width: 0; flex: 1 1 280px }
+.porta .olho { color: #7FE3DE }
+.porta b { font: 400 clamp(1.9rem, 5vw, 2.6rem)/1.05 var(--serif) }
+.porta b em { color: #7FE3DE }
+.porta span:last-child { color: #B9CCD6; font-size: .92rem }
+.porta .btn { background: #7FE3DE; color: #0A1C2E }
+.pacotes { display: grid; gap: 16px }
+@media (min-width: 760px) { .pacotes { grid-template-columns: 1fr 1fr } }
+.pcard { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0 }
+.pcard h3 { font-size: 1.9rem; line-height: 1.05 }
+.pcard > p { color: var(--ink-2); font-size: .92rem }
+.pcard .btn { justify-self: start }
+.tab-precos { display: grid }
+.tab-precos > div { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--linha) }
+.tab-precos > div:last-child { border-bottom: 0 }
+.tab-precos span { min-width: 0; font-weight: 600; font-size: .95rem }
+.tab-precos small { display: block; font-weight: 400; font-size: .78rem; color: var(--ink-2) }
+.tab-precos b { font: 400 1.6rem/1 var(--serif); white-space: nowrap }
+.tab-precos b small { display: inline; font: 400 .8rem var(--body) }
+.tab-precos .melhor { background: var(--agua); margin-inline: -10px; padding-inline: 10px; border-radius: 10px; border-bottom-color: transparent }
+.tab-precos .melhor small { color: var(--acento); font-weight: 600 }
+
+/* produtos digitais */
+.produtos { display: grid; gap: 16px; width: 100% }
+@media (min-width: 760px) { .produtos { grid-template-columns: 1.6fr 1fr } }
+.produto { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 18px; align-items: center; min-width: 0 }
+@media (min-width: 560px) { .produto:not(.breve) { grid-template-columns: 170px 1fr } }
+.produto img { width: 100%; max-width: 220px; aspect-ratio: 1 / 1.414; object-fit: cover; border-radius: 8px; box-shadow: var(--sombra); justify-self: center }
+.produto-txt { display: grid; gap: 12px; min-width: 0 }
+.produto h3 { font-size: 2rem; line-height: 1.05 }
+.produto p { color: var(--ink-2) }
+.produto .preco { font: 400 2.2rem/1 var(--serif) }
+.produto.breve { background: transparent; border-style: dashed }
+
+/* como fechar */
+.passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; width: 100%; max-width: 980px; text-align: left }
+@media (min-width: 760px) { .passos { grid-template-columns: repeat(3, 1fr) } }
+.passos li { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 8px; align-content: start }
+.passos b { font: 400 2.6rem/1 var(--serif); color: var(--acento) }
+.passos h3 { font-size: 1.6rem; line-height: 1.1 }
+.passos p { color: var(--ink-2) }
+
+/* botão fixo do WhatsApp */
+.zap-fixo { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20; display: inline-flex; align-items: center; gap: 8px; background: #1FA855; color: #FFFFFF; font: 700 .9rem/1 var(--body); text-decoration: none; padding: 13px 18px; border-radius: 999px; box-shadow: 0 10px 28px -8px rgba(0, 0, 0, .45) }
+.zap-fixo svg { width: 20px; height: 20px; fill: currentColor }
+
+/* dúvidas */
+.faq { width: 100%; max-width: 720px; display: grid; gap: 10px; text-align: left }
+.faq details { background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 4px 18px }
+.faq summary { cursor: pointer; font-weight: 600; padding: 12px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px }
+.faq summary::-webkit-details-marker { display: none }
+.faq summary::after { content: "+"; color: var(--acento); font: 700 1.1rem/1 var(--mono) }
+.faq details[open] summary::after { content: "−" }
+.faq p { color: var(--ink-2); padding-bottom: 14px }
+
+footer { padding-inline: 16px; padding-block: 28px 96px; border-top: 1px solid var(--linha) }
 footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: .82rem; color: var(--ink-2) }
 
 @media (prefers-reduced-motion: reduce) {
@@ -178,10 +239,10 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
     <div class="hero-txt">
       <span class="olho">@jvdafisio · vídeo e monetização</span>
       <h1>Vídeo que traz <em>cliente.</em><br>Perfil que dá <em>dinheiro.</em></h1>
-      <p class="sub">Sou o João Vitor, de Montes Claros. Cuido dos vídeos do meu perfil, do perfil da minha esposa e de uma clínica de fisioterapia. Faço vídeos avulsos pra cursos e eventos, e ensino quem quer aprender a fazer os próprios. Os números desta página saíram direto das plataformas.</p>
+      <p class="sub">Sou o João Vitor, de Montes Claros. Cuido dos vídeos do meu perfil, do perfil da minha esposa e de uma clínica de fisioterapia. Faço comerciais e vídeos avulsos pra marcas, cursos e eventos, e ensino quem quer aprender a fazer os próprios. Os números desta página saíram direto das plataformas.</p>
       <div class="acoes">
-        <a class="btn" href="#trabalhe">Quero aprender →</a>
-        <a class="link" href="#trabalhe">Quero contratar</a>
+        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+        <a class="link" href="#videos">Ver trabalhos</a>
       </div>
       <div class="fontes-dado">Números de <span>Instagram</span> <span>TikTok</span> <span>Kiwify</span> <span>Shopee</span></div>
     </div>
@@ -203,9 +264,11 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
     <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>✦</span>
     <span>4,9 milhões de <em>views</em></span><span>✦</span>
     <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>✦</span>
+    <span>Comercial, curso e <em>evento</em></span><span>✦</span>
     <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>✦</span>
     <span>4,9 milhões de <em>views</em></span><span>✦</span>
     <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>✦</span>
+    <span>Comercial, curso e <em>evento</em></span><span>✦</span>
   </div>
 </div>
 
@@ -272,8 +335,8 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <video id="v-depois" data-auto src="midia/fg_semdor.mp4" poster="midia/fg_semdor.jpg" muted loop playsinline preload="none" aria-label="Vídeo da clínica feito com a gente"></video>
       </div>
       <div class="chave" role="group" aria-label="Comparar vídeos">
-        <button type="button" id="b-antes" aria-pressed="false">Antes · 1,9 mil</button>
-        <button type="button" id="b-depois" aria-pressed="true">Depois · 8,8 mil</button>
+        <button type="button" data-v="v-antes" aria-pressed="false">Antes · 1,9 mil</button>
+        <button type="button" data-v="v-depois" aria-pressed="true">Depois · 8,8 mil</button>
       </div>
       <p class="legenda">Mesma clínica, mesmo fisioterapeuta. Toque pra alternar.<br>O "depois" teve 233 curtidas e 76 comentários.</p>
     </div>
@@ -288,17 +351,52 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <div class="barra"><span class="r">2º vídeo com a gente<small>30/09, parou de doer não é estar pronto</small></span><span class="t"><i class="nosso" style="width:100%"></i></span><b class="num">8.844</b></div>
       </div>
       <p class="local"><strong>View de quem mora perto.</strong> O conteúdo fala com o paciente de Montes Claros, e essas visualizações locais já estão virando paciente na clínica.</p>
-      <div class="acoes"><a class="btn" href="#trabalhe">Quero isso na minha clínica →</a></div>
+      <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20v%C3%ADdeos%20pra%20minha%20cl%C3%ADnica." target="_blank" rel="noopener">Quero isso na minha clínica →</a></div>
     </div>
   </div>
 </section>
 
-<section class="faixa" aria-labelledby="t-avulso">
+<section class="faixa clinica invertida" id="edicao" aria-labelledby="t-edicao">
+  <div class="miolo">
+    <div class="clinica-txt">
+      <span class="olho">Edição</span>
+      <h2 class="h2" id="t-edicao">O mesmo vídeo, <em>antes e depois.</em></h2>
+      <p class="sub">Um é o que eu gravei no celular. O outro é o que foi pro ar. É isso que você recebe quando me manda o seu vídeo:</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Corte colado na fala, sem respiração e sem "é…" no meio.</span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Legenda que acompanha a sua voz e títulos com a frase que importa.</span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Imagem de apoio que mostra o que você está falando, e som só onde ajuda.</span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Cor corrigida e capa que funciona no grid do seu perfil.</span></li>
+      </ul>
+      <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20mandar%20meus%20v%C3%ADdeos%20pra%20voc%C3%AA%20editar." target="_blank" rel="noopener">Quero meus vídeos editados →</a></div>
+    </div>
+    <div class="lado">
+      <div class="cel">
+        <video id="v-bruto" src="midia/bruto.mp4" poster="midia/bruto.jpg" muted loop playsinline preload="none" aria-label="O vídeo como saiu do celular, sem edição" hidden></video>
+        <video id="v-editado" data-auto src="midia/editado.mp4" poster="midia/editado.jpg" muted loop playsinline preload="none" aria-label="O mesmo vídeo editado"></video>
+      </div>
+      <div class="chave" role="group" aria-label="Comparar bruto e editado">
+        <button type="button" data-v="v-bruto" aria-pressed="false">O que eu gravei</button>
+        <button type="button" data-v="v-editado" aria-pressed="true">O que foi pro ar</button>
+      </div>
+      <p class="legenda">Toque pra alternar. Vídeo "Tenho todos", @jvdafisio.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faixa agua" aria-labelledby="t-avulso">
   <div class="miolo centro">
     <span class="olho">Vídeos avulsos</span>
     <h2 class="h2" id="t-avulso">Também faço vídeo <em>sob encomenda.</em></h2>
-    <p class="sub">Não precisa de pacote mensal. Faço o vídeo que você precisa pra divulgar um curso, cobrir um evento ou contar o depoimento de um aluno. Alguns que já fiz:</p>
+    <p class="sub">Não precisa de pacote mensal. Faço o vídeo que você precisa: comercial, divulgação de curso, cobertura de evento ou depoimento. Alguns que já fiz:</p>
     <div class="trio">
+      <article class="reel">
+        <div class="tela">
+          <video data-auto src="midia/pedrao.mp4" poster="midia/pedrao.jpg" muted loop playsinline preload="none" aria-label="Trecho do comercial do novo estágio na academia WCT"></video>
+        </div>
+        <h3>Comercial do novo estágio na academia WCT</h3>
+        <div class="meta"><span class="forte">Pedro Almeida</span><span>comercial</span></div>
+      </article>
       <article class="reel">
         <div class="tela">
           <video data-auto src="midia/eb_promo.mp4" poster="midia/eb_promo.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo de divulgação da Formação em Osteopatia"></video>
@@ -321,11 +419,11 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <div class="meta"><span class="forte">LAFEO</span><span>vídeo do evento</span></div>
       </article>
     </div>
-    <a class="btn" href="#trabalhe">Quero um vídeo avulso →</a>
+    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20um%20v%C3%ADdeo%20avulso." target="_blank" rel="noopener">Quero um vídeo assim →</a>
   </div>
 </section>
 
-<section class="faixa agua" aria-labelledby="t-grana">
+<section class="faixa" aria-labelledby="t-grana">
   <div class="miolo centro">
     <span class="olho">Monetização</span>
     <h2 class="h2" id="t-grana">View só importa<br><em>quando vira dinheiro.</em></h2>
@@ -342,7 +440,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   </div>
 </section>
 
-<section class="faixa quem" id="trabalhe" aria-labelledby="t-quem">
+<section class="faixa agua quem" id="trabalhe" aria-labelledby="t-quem">
   <div class="miolo">
     <div class="quem-txt">
       <span class="olho">Pra quem é</span>
@@ -378,6 +476,68 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   </div>
 </section>
 
+<section class="faixa" aria-labelledby="t-passos">
+  <div class="miolo centro">
+    <span class="olho">Como fechar</span>
+    <h2 class="h2" id="t-passos">Três passos e <em>tá no ar.</em></h2>
+    <ol class="passos">
+      <li><b>1</b><h3>Você me chama</h3><p>No WhatsApp, do seu jeito. Conta o que precisa e, se tiver, manda o seu perfil ou um vídeo de exemplo.</p></li>
+      <li><b>2</b><h3>A gente combina</h3><p>Te mando a proposta e o plano do vídeo: o que gravar, onde e quando fica pronto.</p></li>
+      <li><b>3</b><h3>Você aprova e posta</h3><p>Eu gravo ou edito, você confere, e o vídeo sai pronto pra postar.</p></li>
+    </ol>
+    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+  </div>
+</section>
+
+<section class="faixa agua" id="pdf" aria-labelledby="t-pdf">
+  <div class="miolo">
+    <div class="miolo centro" style="gap:16px">
+      <span class="olho">Produtos digitais</span>
+      <h2 class="h2" id="t-pdf">Pra começar <em>hoje.</em></h2>
+    </div>
+    <div class="produtos">
+      <article class="produto">
+        <img src="midia/kit_capa.jpg" alt="Capa do PDF Kit Edição Viral" loading="lazy">
+        <div class="produto-txt">
+          <span class="olho">PDF · 15 páginas</span>
+          <h3>Kit Edição Viral</h3>
+          <p>As fontes e os efeitos sonoros certos pra cada momento do seu vídeo, com o mapa que eu uso nos vídeos que edito.</p>
+          <ul class="checks">
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>5 combinações de fonte prontas e as regras de legenda</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>O mapa de efeitos: quando usar cada som, e quando não usar</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Serve pra CapCut, Edits, InShot ou qualquer editor</span></li>
+          </ul>
+          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" id="b-kit" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Quero%20o%20Kit%20Edi%C3%A7%C3%A3o%20Viral." target="_blank" rel="noopener">Quero o Kit →</a></div>
+        </div>
+      </article>
+      <article class="produto breve">
+        <div class="produto-txt">
+          <span class="olho">Em breve</span>
+          <h3>Molde Viral</h3>
+          <p>Como eu achei o formato do vídeo da coluna com Oreo, que passou de 2 milhões de views, e refiz do meu jeito sem copiar ninguém. O passo a passo pra achar o seu.</p>
+          <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Me%20avisa%20quando%20sair%20o%20Molde%20Viral." target="_blank" rel="noopener">Me avisa quando sair →</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="faixa" aria-labelledby="t-faq">
+  <div class="miolo centro">
+    <span class="olho">Dúvidas</span>
+    <h2 class="h2" id="t-faq">Antes de <em>chamar.</em></h2>
+    <div class="faq">
+      <details><summary>Funciona pro meu nicho?</summary><p>Edito vídeo de saúde, maternidade, curso e negócio local. O que muda de um nicho pro outro é o roteiro e a identidade: cada cliente tem a sua fonte, a sua cor e o seu jeito de legenda.</p></details>
+      <details><summary>Preciso aparecer no vídeo?</summary><p>Não. Dá pra fazer com objeto, tela, narração ou com quem trabalha com você. O vídeo da coluna com Oreo, o de 2,2 milhões de views, não tem ninguém falando.</p></details>
+      <details><summary>Como eu mando o vídeo?</summary><p>Pelo WhatsApp ou por um link do Google Drive, do jeito que saiu do celular, sem editar nada.</p></details>
+      <details><summary>Em quanto tempo fica pronto?</summary><p>A edição fica pronta em até 3 dias úteis. Se for urgente, me fala no WhatsApp que a gente vê o prazo.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Cada vídeo tem uma rodada de ajuste inclusa. Você vê antes de postar e me fala o que mudar.</p></details>
+      <details><summary>Você garante que vai viralizar?</summary><p>Não, e desconfie de quem garante. Eu garanto um vídeo bem editado, com começo forte e num formato que já funciona. A view depende também do assunto, do perfil e do dia.</p></details>
+      <details><summary>Atende fora de Montes Claros?</summary><p>A edição e a mentoria são online, pra qualquer lugar. Gravação presencial e cobertura de evento, só em Montes Claros.</p></details>
+    </div>
+  </div>
+</section>
+
 <section class="faixa agua" aria-labelledby="t-fala">
   <div class="miolo centro">
     <span class="olho ink">Sem formulário</span>
@@ -405,6 +565,8 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   </div>
 </footer>
 
+<a class="zap-fixo" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>WhatsApp</a>
+
 <script>
 (() => {
   const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -424,16 +586,18 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
     if (ligar) { v.muted = false; v.currentTime = 0; v.play().catch(() => {}); b.setAttribute('aria-pressed', 'true'); }
   }));
 
-  // antes / depois da clínica
-  const va = document.getElementById('v-antes'), vd = document.getElementById('v-depois');
-  const ba = document.getElementById('b-antes'), bd = document.getElementById('b-depois');
-  const mostrar = antes => {
-    va.hidden = !antes; vd.hidden = antes;
-    ba.setAttribute('aria-pressed', antes); bd.setAttribute('aria-pressed', !antes);
-    const on = antes ? va : vd, off = antes ? vd : va;
-    off.pause(); if (!calmo) { on.currentTime = 0; on.play().catch(() => {}); }
-  };
-  ba.addEventListener('click', () => mostrar(true));
-  bd.addEventListener('click', () => mostrar(false));
+  // antes / depois (clínica e edição): cada botão mostra o vídeo do seu data-v e esconde os outros do grupo
+  document.querySelectorAll('.chave').forEach(ch => {
+    const bs = [...ch.querySelectorAll('button[data-v]')];
+    bs.forEach(b => b.addEventListener('click', () => bs.forEach(o => {
+      const v = document.getElementById(o.dataset.v), on = o === b;
+      o.setAttribute('aria-pressed', on); v.hidden = !on;
+      if (!on) v.pause(); else if (!calmo) { v.currentTime = 0; v.play().catch(() => {}); }
+    })));
+  });
+
+  // checkout do Kit na Kiwify: colar aqui quando existir; vazio = o botão chama no WhatsApp
+  const CHECKOUT_KIT = 'https://pay.kiwify.com.br/fmjxVso?src=pagina';
+  if (CHECKOUT_KIT) document.getElementById('b-kit').href = CHECKOUT_KIT;
 })();
 </script>
