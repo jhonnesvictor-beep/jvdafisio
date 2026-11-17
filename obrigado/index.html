@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Compra confirmada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root { --papel: #F7FBFA; --ink: #0A1C2E; --ink-2: #4A5E6E; --acento: #0C7A75; --destaque: #F2545F; --cartao: #FFFFFF;
+  --linha: rgba(10, 28, 46, .13); --serif: "Instrument Serif", Georgia, serif; --body: "Figtree", "Segoe UI", system-ui, sans-serif }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --papel: #0A1C2E; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --destaque: #FF6B74; --cartao: #12304B;
+  --linha: rgba(127, 227, 222, .16); color-scheme: dark } }
+:root[data-theme="dark"] { --papel: #0A1C2E; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --destaque: #FF6B74; --cartao: #12304B;
+  --linha: rgba(127, 227, 222, .16); color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--papel); color: var(--ink); font: 400 1.05rem/1.6 var(--body); margin: 0 }
+main { max-width: 34rem; margin: 0 auto; padding: 48px 16px 64px }
+.olho { color: var(--acento); font-weight: 700; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase }
+h1 { font: 400 clamp(2.2rem, 8vw, 3rem)/1.1 var(--serif); margin: 8px 0 16px; text-wrap: balance }
+p { margin: 0 0 12px; color: var(--ink-2) }
+.cartao { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 24px; margin-top: 28px }
+.cartao h2 { font: 400 1.6rem/1.2 var(--serif); margin: 0 0 8px; color: var(--ink) }
+.btn { display: block; text-align: center; background: var(--destaque); color: #fff; font-weight: 700; text-decoration: none;
+  padding: 16px 20px; border-radius: 999px; margin-top: 20px }
+.btn:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px }
+small { display: block; margin-top: 28px; color: var(--ink-2); font-size: .85rem }
+</style>
+</head>
+<body>
+<main>
+  <p class="olho">Compra confirmada</p>
+  <h1>Valeu pela confiança!</h1>
+  <p>O acesso ao seu guia chega no e-mail que você usou na compra. Se não aparecer em alguns minutos, olha no spam ou na aba Promoções.</p>
+  <section class="cartao">
+    <h2 id="titulo">Bora conversar?</h2>
+    <p id="texto">Me chama no WhatsApp se tiver qualquer dúvida sobre o guia.</p>
+    <a class="btn" id="zap" href="https://wa.me/5538999997025">Falar comigo no WhatsApp</a>
+  </section>
+  <small>João Vitor · @jvdafisio</small>
+</main>
+<script>
+const GUIAS = {
+  gravar: ["Sua call de 20 minutos", "Quem compra o Gravar Sem Travar ganha uma call de 20 minutos comigo. E, se quiser, eu edito ele por R$ 27.",
+    "Marcar minha call no WhatsApp", "Oi, João! Comprei o Gravar Sem Travar e quero marcar minha call de 20 minutos."],
+  kit: ["Seu primeiro vídeo por R$ 27", "Gravou e não quer editar sozinho agora? Me manda o vídeo que eu edito o primeiro por R$ 27.",
+    "Mandar meu vídeo no WhatsApp", "Oi, João! Comprei o Kit Edição Viral e quero mandar meu primeiro vídeo pra você editar por R$ 27."],
+  perfil: ["Quer ajuda pra colocar em prática?", "Eu edito seu primeiro vídeo por R$ 27, e tem a mentoria de 1 hora pra montar seu plano comigo.",
+    "Falar comigo no WhatsApp", "Oi, João! Comprei o Perfil que Dá Dinheiro e quero saber da edição e da mentoria."],
+};
+const g = GUIAS[new URLSearchParams(location.search).get("guia")];
+const msg = g ? g[3] : "Oi, João! Acabei de comprar seu guia.";
+if (g) [titulo.textContent, texto.textContent, zap.textContent] = g;
+zap.href = "https://wa.me/5538999997025?text=" + encodeURIComponent(msg);
+</script>
+</body>
+</html>
