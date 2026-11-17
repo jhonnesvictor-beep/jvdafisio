@@ -13,7 +13,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Caveat:wght@600&display=swap">
 <style>
 /* Layout: página de venda em faixas alternadas (papel / água clara / marinho), no molde da Meg Kilgore,
-   com a identidade do João: marinho + aqua. Serifada condensada nos títulos, itálico na palavra que importa. */
+   com a identidade do João: marinho + aqua. Serifada condensada nos títulos, itálico na palavra que importa.
+   Cor (16/11, método do @jorgedaweb): 60/30/10. 60 = papel e água; 30 = marinho e teal (texto e faixas escuras);
+   10 = UMA cor de destaque, o coral, só no que é pra clicar. Coral #F2545F é o complementar do teal da marca
+   (o "azul com branco + coralzinho" dele). Texto marinho no coral: 5,1:1; botão contra o papel: 3,2:1. */
 :root {
   --papel: #F7FBFA;
   --agua: #E3F4F1;
@@ -21,6 +24,8 @@
   --ink-2: #4A5E6E;
   --acento: #0C7A75;
   --marinho: #0A1C2E;
+  --destaque: #F2545F;
+  --destaque-ink: #0A1C2E;
   --btn: #0A1C2E;
   --btn-ink: #F7FBFA;
   --cartao: #FFFFFF;
@@ -33,13 +38,15 @@
   --mao: "Caveat", "Segoe Print", cursive;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE;
-  --btn: #7FE3DE; --btn-ink: #0A1C2E; --cartao: #12304B; --moldura: #163552;
-  --linha: rgba(127, 227, 222, .16); --sombra: 0 24px 50px -24px rgba(0, 0, 0, .7); color-scheme: dark } }
-:root[data-theme="dark"] {
-  --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE;
+  --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --destaque: #FF6B74;
   --btn: #7FE3DE; --btn-ink: #0A1C2E; --cartao: #12304B; --moldura: #163552;
   --linha: rgba(127, 227, 222, .16); --sombra: 0 24px 50px -24px rgba(0, 0, 0, .7); color-scheme: dark }
+  :root:not([data-theme="light"]) .escura { --papel: #061220; --cartao: #0E2538 } }
+:root[data-theme="dark"] {
+  --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --destaque: #FF6B74;
+  --btn: #7FE3DE; --btn-ink: #0A1C2E; --cartao: #12304B; --moldura: #163552;
+  --linha: rgba(127, 227, 222, .16); --sombra: 0 24px 50px -24px rgba(0, 0, 0, .7); color-scheme: dark }
+:root[data-theme="dark"] .escura { --papel: #061220; --cartao: #0E2538 }
 
 * { box-sizing: border-box }
 [hidden] { display: none !important }
@@ -53,6 +60,8 @@ a { color: inherit }
 
 .faixa { padding-inline: 16px; padding-block: 72px; border-top: 1px solid var(--linha) }
 .faixa.agua { background: var(--agua) }
+/* faixa escura: o marinho dos 30%, onde o número e o botão mais aparecem */
+.escura { --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --cartao: #12304B; --linha: rgba(127, 227, 222, .16); background: var(--papel); color: var(--ink); color-scheme: dark }
 .miolo { max-width: 1080px; margin: 0 auto; display: grid; gap: 22px }
 .centro { text-align: center; justify-items: center }
 .olho { font: 700 .72rem/1.2 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--acento) }
@@ -60,13 +69,13 @@ a { color: inherit }
 .h2 { font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.02 }
 .sub { color: var(--ink-2); max-width: 56ch; font-size: 1.05rem }
 
-.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--btn); color: var(--btn-ink); font: 700 .78rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; padding: 17px 24px; border-radius: 999px; transition: transform .15s }
-.btn:hover { transform: translateY(-2px) }
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--destaque); color: var(--destaque-ink); font: 700 .78rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; padding: 17px 24px; border-radius: 999px; transition: transform .15s, box-shadow .15s }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -12px var(--destaque) }
 .link { font: 700 .74rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); text-underline-offset: 6px }
 .mao { font: 600 1.45rem/1.1 var(--mao); color: var(--acento); display: inline-block; transform: rotate(-3deg) }
 
 /* hero */
-.hero { padding-inline: 16px; padding-block: 48px 64px }
+.hero { padding-inline: 16px; padding-block: 48px 64px; overflow: clip }
 .hero .miolo { gap: 44px; align-items: center }
 @media (min-width: 860px) { .hero .miolo { grid-template-columns: 1.15fr .85fr } .hero { padding-block: 80px } }
 .hero-txt { display: grid; gap: 22px; min-width: 0 }
@@ -76,12 +85,15 @@ a { color: inherit }
 .fontes-dado { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: .78rem; color: var(--ink-2) }
 .fontes-dado span { border: 1px solid var(--linha); background: var(--cartao); border-radius: 999px; padding: 4px 10px; font-weight: 600; color: var(--ink) }
 
-.palco { position: relative; justify-self: center; width: min(300px, 74vw); padding-bottom: 18px }
+.palco { position: relative; justify-self: center; width: min(300px, 74vw); padding-bottom: 18px; isolation: isolate }
+/* o "degradê" do Jorge: duas cores da marca + branco, borradas atrás do celular */
+.palco::before { content: ""; position: absolute; inset: 4% -16% 0; z-index: -1; border-radius: 50%; background: radial-gradient(45% 40% at 28% 32%, var(--acento), transparent 70%), radial-gradient(42% 38% at 74% 72%, var(--destaque), transparent 70%), radial-gradient(30% 30% at 55% 50%, #FFFFFF, transparent 70%); filter: blur(46px); opacity: .42 }
 .cel { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 34px; overflow: hidden; background: var(--moldura); border: 8px solid var(--moldura); outline: 1px solid var(--linha); box-shadow: var(--sombra) }
 .cel video { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 26px }
 .prova { position: absolute; right: -14px; bottom: 0; background: var(--cartao); border: 1px solid var(--linha); border-radius: 16px; padding: 14px 16px; box-shadow: var(--sombra); display: grid; gap: 2px; min-width: 168px }
 @media (min-width: 860px) { .prova { right: -56px } }
 .prova small { font: 700 .62rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--acento) }
+.prova .ponto { color: var(--destaque); font-style: normal }
 .prova b { font: 400 2.5rem/1 var(--serif) }
 .prova span { font-size: .78rem; color: var(--ink-2) }
 
@@ -90,6 +102,7 @@ a { color: inherit }
 .corre-trilho { display: flex; width: max-content; animation: correr 28s linear infinite }
 .corre-trilho span { font: 700 .78rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 16px 28px; white-space: nowrap }
 .corre-trilho em { font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0; text-transform: none; color: #7FE3DE }
+.corre-trilho span:nth-child(even) { color: var(--destaque) }
 @keyframes correr { to { transform: translateX(-50%) } }
 
 /* vídeos */
@@ -100,8 +113,14 @@ a { color: inherit }
 .tela video { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 17px }
 .views { position: absolute; left: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 6px; background: rgba(247, 251, 250, .94); color: #0A1C2E; font: 700 .9rem/1 var(--body); padding: 6px 9px; border-radius: 9px }
 .views svg { width: 10px; height: 10px; fill: #0C7A75 }
-.som { position: absolute; right: 8px; top: 8px; border: 0; cursor: pointer; background: rgba(10, 28, 46, .72); color: #F7FBFA; font: 700 .62rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 7px 9px; border-radius: 999px }
-.som[aria-pressed="true"] { background: #7FE3DE; color: #0A1C2E }
+/* botão de som: todo vídeo abre mudo e tem o seu (criado no script, menos nos data-mudo) */
+.som { position: absolute; right: 8px; top: 8px; z-index: 2; display: inline-flex; align-items: center; gap: 6px; min-height: 34px; border: 0; cursor: pointer; background: rgba(10, 28, 46, .74); color: #F7FBFA; font: 700 .62rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 8px 11px; border-radius: 999px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px) }
+.som svg { width: 15px; height: 15px; fill: currentColor; flex: none }
+.som .onda { display: none }
+.som[aria-pressed="true"] { background: var(--destaque); color: var(--destaque-ink) }
+.som[aria-pressed="true"] .onda { display: inline }
+.som[aria-pressed="true"] .corta { display: none }
+.cel .som { right: 12px; top: 12px }
 .reel h3 { font: 600 .95rem/1.3 var(--body) }
 .meta { display: flex; flex-wrap: wrap; gap: 3px 10px; font-size: .78rem; color: var(--ink-2) }
 .meta a { color: var(--acento); font-weight: 600; text-decoration: none }
@@ -170,15 +189,14 @@ a { color: inherit }
 
 /* produtos digitais */
 .produtos { display: grid; gap: 16px; width: 100% }
-@media (min-width: 760px) { .produtos { grid-template-columns: 1.6fr 1fr } }
+@media (min-width: 980px) { .produtos { grid-template-columns: repeat(3, 1fr) } .produtos .produto { grid-template-columns: 1fr; align-items: start } }
 .produto { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 18px; align-items: center; min-width: 0 }
-@media (min-width: 560px) { .produto:not(.breve) { grid-template-columns: 170px 1fr } }
+@media (min-width: 560px) { .produto { grid-template-columns: 170px 1fr } }
 .produto img { width: 100%; max-width: 220px; aspect-ratio: 1 / 1.414; object-fit: cover; border-radius: 8px; box-shadow: var(--sombra); justify-self: center }
 .produto-txt { display: grid; gap: 12px; min-width: 0 }
 .produto h3 { font-size: 2rem; line-height: 1.05 }
 .produto p { color: var(--ink-2) }
 .produto .preco { font: 400 2.2rem/1 var(--serif) }
-.produto.breve { background: transparent; border-style: dashed }
 
 /* como fechar */
 .passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; width: 100%; max-width: 980px; text-align: left }
@@ -227,8 +245,8 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <video data-auto src="midia/apresentacao.mp4" poster="midia/apresentacao.jpg" muted loop playsinline preload="metadata" aria-label="Montagem com o começo de seis vídeos"></video>
       </div>
       <div class="prova">
-        <small>● Coluna com Oreo</small>
-        <b class="num">2,2 mi</b>
+        <small><i class="ponto">●</i> Coluna com Oreo</small>
+        <b class="num">2,6 mi</b>
         <span>views somando Insta e TikTok</span>
       </div>
     </div>
@@ -238,11 +256,11 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 <div class="corre" aria-hidden="true">
   <div class="corre-trilho">
     <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>✦</span>
-    <span>4,9 milhões de <em>views</em></span><span>✦</span>
+    <span>5,7 milhões de <em>views</em></span><span>✦</span>
     <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>✦</span>
     <span>Comercial, curso e <em>evento</em></span><span>✦</span>
     <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>✦</span>
-    <span>4,9 milhões de <em>views</em></span><span>✦</span>
+    <span>5,7 milhões de <em>views</em></span><span>✦</span>
     <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>✦</span>
     <span>Comercial, curso e <em>evento</em></span><span>✦</span>
   </div>
@@ -251,49 +269,45 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 <section class="faixa" id="videos" aria-labelledby="t-videos">
   <div class="miolo centro">
     <span class="olho">Vídeos que viralizaram</span>
-    <h2 class="h2" id="t-videos">Cinco vídeos,<br><em>4,9 milhões de views.</em></h2>
+    <h2 class="h2" id="t-videos">Cinco vídeos,<br><em>5,7 milhões de views.</em></h2>
     <p class="sub">Um vídeo meu e quatro do @ordenhasdaju, o perfil de amamentação e rotina de bebê que eu construo junto com a Ju. Toque em "som" pra ouvir, ou abra o original.</p>
     <div class="trilho">
       <article class="reel">
         <div class="tela">
           <video data-auto src="midia/oreo.mp4" poster="midia/oreo.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo Coluna com Oreo"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>2,2 mi</span>
+          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>2,6 mi</span>
         </div>
         <h3>Coluna com Oreo</h3>
-        <div class="meta"><span>Insta 1,8 mi · TikTok 443 mil</span><a href="https://www.instagram.com/reel/DeKHw-IyNRw/" target="_blank" rel="noopener">Insta ↗</a><a href="https://www.tiktok.com/@jvdafisio1/video/7693580681665891592" target="_blank" rel="noopener">TikTok ↗</a></div>
+        <div class="meta"><span>Insta 2,1 mi · TikTok 554 mil</span><a href="https://www.instagram.com/reel/DeKHw-IyNRw/" target="_blank" rel="noopener">Insta ↗</a><a href="https://www.tiktok.com/@jvdafisio1/video/7693580681665891592" target="_blank" rel="noopener">TikTok ↗</a></div>
       </article>
       <article class="reel">
         <div class="tela">
           <video data-auto src="midia/ju_ep1.mp4" poster="midia/ju_ep1.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo EP. 1"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>2 mi</span>
-          <button class="som" type="button" aria-pressed="false">som</button>
+          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>2,2 mi</span>
         </div>
         <h3>O que meu bebê de 6 meses vai comer hoje</h3>
-        <div class="meta"><span>TikTok 1,5 mi · Insta 518 mil</span><a href="https://www.tiktok.com/@ordenhasdaju/video/7671372583694028040" target="_blank" rel="noopener">TikTok ↗</a><a href="https://www.instagram.com/reel/DbwCOkUoHRQ/" target="_blank" rel="noopener">Insta ↗</a></div>
+        <div class="meta"><span>TikTok 1,6 mi · Insta 641 mil</span><a href="https://www.tiktok.com/@ordenhasdaju/video/7671372583694028040" target="_blank" rel="noopener">TikTok ↗</a><a href="https://www.instagram.com/reel/DbwCOkUoHRQ/" target="_blank" rel="noopener">Insta ↗</a></div>
       </article>
       <article class="reel">
         <div class="tela">
           <video data-auto src="midia/ju_powerpump.mp4" poster="midia/ju_powerpump.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo sobre Power Pump"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>473 mil</span>
-          <button class="som" type="button" aria-pressed="false">som</button>
+          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>493 mil</span>
         </div>
         <h3>Já ouviu falar do Power Pump?</h3>
-        <div class="meta"><span>Insta, 11,4 mil curtidas</span><a href="https://www.instagram.com/reel/DXlzFuuCNAe/" target="_blank" rel="noopener">Insta ↗</a></div>
+        <div class="meta"><span>Insta 493 mil</span><a href="https://www.instagram.com/reel/DXlzFuuCNAe/" target="_blank" rel="noopener">Insta ↗</a></div>
       </article>
       <article class="reel">
         <div class="tela">
           <video data-auto src="midia/ju_ep2.mp4" poster="midia/ju_ep2.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo EP. 2"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>164 mil</span>
-          <button class="som" type="button" aria-pressed="false">som</button>
+          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>241 mil</span>
         </div>
         <h3>O que meu bebê de 7 meses vai comer hoje</h3>
-        <div class="meta"><span>Insta 135 mil · TikTok 29 mil</span><a href="https://www.instagram.com/reel/DdRNTUTORIb/" target="_blank" rel="noopener">Insta ↗</a><a href="https://www.tiktok.com/@ordenhasdaju/video/7684414473322466568" target="_blank" rel="noopener">TikTok ↗</a></div>
+        <div class="meta"><span>Insta 196 mil · TikTok 45 mil</span><a href="https://www.instagram.com/reel/DdRNTUTORIb/" target="_blank" rel="noopener">Insta ↗</a><a href="https://www.tiktok.com/@ordenhasdaju/video/7684414473322466568" target="_blank" rel="noopener">TikTok ↗</a></div>
       </article>
       <article class="reel">
         <div class="tela">
           <video data-auto src="midia/ju_flange.mp4" poster="midia/ju_flange.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo sobre como medir a flange"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>82 mil</span>
-          <button class="som" type="button" aria-pressed="false">som</button>
+          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>83 mil</span>
         </div>
         <h3>Como medir a flange da bomba</h3>
         <div class="meta"><span>TikTok, 3,2 mil curtidas</span><a href="https://www.tiktok.com/@ordenhasdaju/video/7610619271927844103" target="_blank" rel="noopener">TikTok ↗</a></div>
@@ -311,20 +325,22 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <video id="v-depois" data-auto src="midia/fg_semdor.mp4" poster="midia/fg_semdor.jpg" muted loop playsinline preload="none" aria-label="Vídeo da clínica feito com a gente"></video>
       </div>
       <div class="chave" role="group" aria-label="Comparar vídeos">
-        <button type="button" data-v="v-antes" aria-pressed="false">Antes · 1,9 mil</button>
-        <button type="button" data-v="v-depois" aria-pressed="true">Depois · 8,8 mil</button>
+        <button type="button" data-v="v-antes" aria-pressed="false">Antes · 2 mil</button>
+        <button type="button" data-v="v-depois" aria-pressed="true">Depois · 9 mil</button>
       </div>
       <p class="legenda">Mesma clínica, mesmo fisioterapeuta. Toque pra alternar.<br>O "depois" teve 233 curtidas e 76 comentários.</p>
     </div>
     <div class="clinica-txt">
       <span class="olho">Trabalho para clínica</span>
-      <h2 class="h2" id="t-clinica">Do vídeo de 1,8 mil views para <em>8,8 mil.</em></h2>
+      <h2 class="h2" id="t-clinica">Do vídeo de 1,8 mil views para <em>9 mil.</em></h2>
       <p class="sub">FisioGolden Saúde, clínica de fisioterapia esportiva do Jefferson Teixeira, em Montes Claros. No segundo vídeo que fizemos juntos, o Reel fez 5 vezes o que um vídeo típico do perfil fazia antes.</p>
-      <div class="barras" role="img" aria-label="Views por vídeo: antes, mediana de 1.761; primeiro vídeo com a gente, 3.364; segundo vídeo com a gente, 8.844">
+      <div class="barras" role="img" aria-label="Views por vídeo: antes, mediana de 1.817; primeiro vídeo com a gente, 3.687; segundo, 9.037; o do roxo depois da cirurgia, 5.954">
         <small>Views por Reel no @fisiogoldensaude</small>
-        <div class="barra"><span class="r">Antes<small>vídeo típico, mediana dos 10 anteriores</small></span><span class="t"><i style="width:19.9%"></i></span><b class="num">1.761</b></div>
-        <div class="barra"><span class="r">1º vídeo com a gente<small>24/09, pós-operatório de joelho</small></span><span class="t"><i class="nosso" style="width:38%"></i></span><b class="num">3.364</b></div>
-        <div class="barra"><span class="r">2º vídeo com a gente<small>30/09, parou de doer não é estar pronto</small></span><span class="t"><i class="nosso" style="width:100%"></i></span><b class="num">8.844</b></div>
+        <div class="barra"><span class="r">Antes<small>vídeo típico, mediana dos 10 anteriores</small></span><span class="t"><i style="width:20.1%"></i></span><b class="num">1.817</b></div>
+        <div class="barra"><span class="r">1º vídeo com a gente<small>24/09, pós-operatório de joelho</small></span><span class="t"><i class="nosso" style="width:40.8%"></i></span><b class="num">3.687</b></div>
+        <div class="barra"><span class="r">2º vídeo com a gente<small>30/09, parou de doer não é estar pronto</small></span><span class="t"><i class="nosso" style="width:100%"></i></span><b class="num">9.037</b></div>
+        <div class="barra"><span class="r">Roxo depois da cirurgia<small>03/11, explicando o hematoma do LCA</small></span><span class="t"><i class="nosso" style="width:65.9%"></i></span><b class="num">5.954</b></div>
+        <small>Mediana dos 6 Reels que fizemos juntos: 3.745, o dobro do vídeo típico de antes. Contado em 16/11.</small>
       </div>
       <p class="local"><strong>View de quem mora perto.</strong> O conteúdo fala com o paciente de Montes Claros, e essas visualizações locais já estão virando paciente na clínica.</p>
       <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20v%C3%ADdeos%20pra%20minha%20cl%C3%ADnica." target="_blank" rel="noopener">Quero isso na minha clínica →</a></div>
@@ -382,9 +398,9 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
       </article>
       <article class="reel">
         <div class="tela">
-          <video data-auto src="midia/eb_turmav.mp4" poster="midia/eb_turmav.jpg" muted loop playsinline preload="none" aria-label="Trecho do aftermovie da Turma V"></video>
+          <video data-auto src="midia/eb_toracica.mp4" poster="midia/eb_toracica.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo do módulo de caixa torácica da Turma V, com os ajustes no ritmo da música"></video>
         </div>
-        <h3>Aftermovie do 1º fim de semana da Turma V</h3>
+        <h3>Turma V, módulo de caixa torácica</h3>
         <div class="meta"><span class="forte">Ebrafim</span><span>cobertura de evento</span></div>
       </article>
       <article class="reel">
@@ -399,7 +415,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   </div>
 </section>
 
-<section class="faixa" aria-labelledby="t-grana">
+<section class="faixa escura" aria-labelledby="t-grana">
   <div class="miolo centro">
     <span class="olho">Monetização</span>
     <h2 class="h2" id="t-grana">View só importa<br><em>quando vira dinheiro.</em></h2>
@@ -470,28 +486,49 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
     <div class="miolo centro" style="gap:16px">
       <span class="olho">Produtos digitais</span>
       <h2 class="h2" id="t-pdf">Pra começar <em>hoje.</em></h2>
+      <p class="sub">Levando um, os outros aparecem no checkout com desconto: o Gravar e o Kit por R$ 9,90, o Perfil por R$ 19,90.</p>
     </div>
     <div class="produtos">
       <article class="produto">
-        <img src="midia/kit_capa.jpg" alt="Capa do PDF Kit Edição Viral" loading="lazy">
+        <img src="midia/gravar_capa.jpg" alt="Capa do PDF Gravar Sem Travar" loading="lazy">
         <div class="produto-txt">
-          <span class="olho">PDF · 15 páginas</span>
-          <h3>Kit Edição Viral</h3>
-          <p>As fontes e os efeitos sonoros certos pra cada momento do seu vídeo, com o mapa que eu uso nos vídeos que edito.</p>
+          <span class="olho">PDF · 23 páginas</span>
+          <h3>Gravar Sem Travar</h3>
+          <p>Da ideia ao último take, só com o celular: o tema, o gancho, o roteiro e a gravação sem travar na frente da câmera.</p>
           <ul class="checks">
-            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>5 combinações de fonte prontas e as regras de legenda</span></li>
-            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>O mapa de efeitos: quando usar cada som, e quando não usar</span></li>
-            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Serve pra CapCut, Edits, InShot ou qualquer editor</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Moldes de gancho e roteiros prontos pra adaptar</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>O set em 5 minutos: luz, som, enquadramento e teleprompter</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Como gravar com paciente, com termo de autorização</span></li>
           </ul>
-          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" id="b-kit" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Quero%20o%20Kit%20Edi%C3%A7%C3%A3o%20Viral." target="_blank" rel="noopener">Quero o Kit →</a></div>
+          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" href="https://pay.kiwify.com.br/t6dSQe6?src=pagina" target="_blank" rel="noopener">Quero o Gravar →</a></div>
         </div>
       </article>
-      <article class="produto breve">
+      <article class="produto">
+        <img src="midia/kit_capa.jpg" alt="Capa do PDF Kit Edição Viral" loading="lazy">
         <div class="produto-txt">
-          <span class="olho">Em breve</span>
-          <h3>Molde Viral</h3>
-          <p>Como eu achei o formato do vídeo da coluna com Oreo, que passou de 2 milhões de views, e refiz do meu jeito sem copiar ninguém. O passo a passo pra achar o seu.</p>
-          <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Me%20avisa%20quando%20sair%20o%20Molde%20Viral." target="_blank" rel="noopener">Me avisa quando sair →</a></div>
+          <span class="olho">PDF · 22 páginas</span>
+          <h3>Kit Edição Viral</h3>
+          <p>As fontes, as cores e os sons certos pra cada momento do seu vídeo, com o mapa que eu uso nos vídeos que edito.</p>
+          <ul class="checks">
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>8 combinações de fonte prontas e as regras de legenda</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Cor no texto e música caindo na batida do corte</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Serve pra CapCut, Edits, InShot ou qualquer editor</span></li>
+          </ul>
+          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" href="https://pay.kiwify.com.br/fmjxVso?src=pagina" target="_blank" rel="noopener">Quero o Kit →</a></div>
+        </div>
+      </article>
+      <article class="produto">
+        <img src="midia/perfil_capa.jpg" alt="Capa do PDF Perfil que Dá Dinheiro" loading="lazy">
+        <div class="produto-txt">
+          <span class="olho">PDF · 29 páginas</span>
+          <h3>Perfil que Dá Dinheiro</h3>
+          <p>Do zero ao primeiro real com conteúdo, do jeito que o Instagram e o TikTok funcionam hoje.</p>
+          <ul class="checks">
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Como a rede decide quem vê o seu vídeo</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Quatro jeitos de ganhar dinheiro com conteúdo</span></li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Um plano de 30 dias pra seguir</span></li>
+          </ul>
+          <div class="acoes"><span class="preco num">R$ 37</span><a class="btn" href="https://pay.kiwify.com.br/BHx187p?src=pagina" target="_blank" rel="noopener">Quero o Perfil →</a></div>
         </div>
       </article>
     </div>
@@ -504,7 +541,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
     <h2 class="h2" id="t-faq">Antes de <em>chamar.</em></h2>
     <div class="faq">
       <details><summary>Funciona pro meu nicho?</summary><p>Edito vídeo de saúde, maternidade, curso e negócio local. O que muda de um nicho pro outro é o roteiro e a identidade: cada cliente tem a sua fonte, a sua cor e o seu jeito de legenda.</p></details>
-      <details><summary>Preciso aparecer no vídeo?</summary><p>Não. Dá pra fazer com objeto, tela, narração ou com quem trabalha com você. O vídeo da coluna com Oreo, o de 2,2 milhões de views, não tem ninguém falando.</p></details>
+      <details><summary>Preciso aparecer no vídeo?</summary><p>Não. Dá pra fazer com objeto, tela, narração ou com quem trabalha com você. O vídeo da coluna com Oreo, o de 2,6 milhões de views, não tem ninguém falando.</p></details>
       <details><summary>Como eu mando o vídeo?</summary><p>Pelo WhatsApp ou por um link do Google Drive, do jeito que saiu do celular, sem editar nada.</p></details>
       <details><summary>Em quanto tempo fica pronto?</summary><p>A edição fica pronta em até 3 dias úteis. Se for urgente, me fala no WhatsApp que a gente vê o prazo.</p></details>
       <details><summary>E se eu não gostar?</summary><p>Cada vídeo tem uma rodada de ajuste inclusa. Você vê antes de postar e me fala o que mudar.</p></details>
@@ -514,7 +551,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   </div>
 </section>
 
-<section class="faixa agua" aria-labelledby="t-fala">
+<section class="faixa escura" aria-labelledby="t-fala">
   <div class="miolo centro">
     <span class="olho ink">Sem formulário</span>
     <h2 class="h2" id="t-fala">É só me dizer <em>o que você quer.</em></h2>
@@ -546,34 +583,55 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 <script>
 (() => {
   const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // toca só o que está na tela, pra não gastar o 4G de quem abre pela bio
+  // som: tudo abre mudo; cada caixa de vídeo ganha o seu botão (menos vídeo data-mudo, que não tem áudio).
+  // Um som por vez: ligar um cala os outros.
+  const ICONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9z"/><path class="onda" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path class="corta" d="M16 9.5l5 5M21 9.5l-5 5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>som</span>';
+  const visivel = c => [...c.querySelectorAll('video')].find(v => !v.hidden);
+  const botoes = [...document.querySelectorAll('.tela, .cel')]
+    .filter(c => [...c.querySelectorAll('video')].some(v => !v.hasAttribute('data-mudo')))
+    .map(c => {
+      const b = document.createElement('button');
+      b.className = 'som'; b.type = 'button'; b.innerHTML = ICONE;
+      b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', 'Ouvir com som');
+      c.append(b);
+      return b;
+    });
+  const calar = () => {
+    document.querySelectorAll('video').forEach(v => { v.muted = true });
+    botoes.forEach(b => b.setAttribute('aria-pressed', 'false'));
+  };
+  botoes.forEach(b => b.addEventListener('click', () => {
+    const ligar = b.getAttribute('aria-pressed') !== 'true';
+    calar();
+    if (!ligar) return;
+    const v = visivel(b.parentElement);
+    v.muted = false; v.currentTime = 0; v.play().catch(() => {});
+    b.setAttribute('aria-pressed', 'true');
+  }));
+
+  // toca só o que está na tela, pra não gastar o 4G de quem abre pela bio; saiu da tela, cala
   const io = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
     if (e.isIntersecting && !calmo && !v.hidden) v.play().catch(() => {});
-    else if (!e.isIntersecting) v.pause();
+    else if (!e.isIntersecting) {
+      v.pause();
+      if (!v.muted) { v.muted = true; v.closest('.tela, .cel')?.querySelector('.som')?.setAttribute('aria-pressed', 'false'); }
+    }
   }), { threshold: .4 });
   document.querySelectorAll('video[data-auto]').forEach(v => io.observe(v));
 
-  const soms = document.querySelectorAll('.som');
-  soms.forEach(b => b.addEventListener('click', () => {
-    const v = b.closest('.tela').querySelector('video');
-    const ligar = v.muted;
-    soms.forEach(o => { o.closest('.tela').querySelector('video').muted = true; o.setAttribute('aria-pressed', 'false'); });
-    if (ligar) { v.muted = false; v.currentTime = 0; v.play().catch(() => {}); b.setAttribute('aria-pressed', 'true'); }
-  }));
-
-  // antes / depois (clínica e edição): cada botão mostra o vídeo do seu data-v e esconde os outros do grupo
+  // antes / depois (clínica e edição): cada botão mostra o vídeo do seu data-v e esconde os outros do grupo;
+  // se o som da caixa estava ligado, continua ligado no vídeo que entrou
   document.querySelectorAll('.chave').forEach(ch => {
     const bs = [...ch.querySelectorAll('button[data-v]')];
     bs.forEach(b => b.addEventListener('click', () => bs.forEach(o => {
       const v = document.getElementById(o.dataset.v), on = o === b;
+      const comSom = v.closest('.cel').querySelector('.som')?.getAttribute('aria-pressed') === 'true';
       o.setAttribute('aria-pressed', on); v.hidden = !on;
-      if (!on) v.pause(); else if (!calmo) { v.currentTime = 0; v.play().catch(() => {}); }
+      if (!on) { v.pause(); v.muted = true; }
+      else { v.muted = !comSom; if (!calmo || comSom) { v.currentTime = 0; v.play().catch(() => {}); } }
     })));
   });
 
-  // checkout do Kit na Kiwify: colar aqui quando existir; vazio = o botão chama no WhatsApp
-  const CHECKOUT_KIT = 'https://pay.kiwify.com.br/fmjxVso?src=pagina';
-  if (CHECKOUT_KIT) document.getElementById('b-kit').href = CHECKOUT_KIT;
 })();
 </script>
