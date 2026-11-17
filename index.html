@@ -189,7 +189,7 @@ a { color: inherit }
 
 /* produtos digitais */
 .produtos { display: grid; gap: 16px; width: 100% }
-@media (min-width: 980px) { .produtos { grid-template-columns: repeat(3, 1fr) } .produtos .produto { grid-template-columns: 1fr; align-items: start } }
+@media (min-width: 980px) { .produtos { grid-template-columns: repeat(3, 1fr) } .produtos .produto { grid-template-columns: 1fr; align-content: start } }
 .produto { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 18px; align-items: center; min-width: 0 }
 @media (min-width: 560px) { .produto { grid-template-columns: 170px 1fr } }
 .produto img { width: 100%; max-width: 220px; aspect-ratio: 1 / 1.414; object-fit: cover; border-radius: 8px; box-shadow: var(--sombra); justify-self: center }
