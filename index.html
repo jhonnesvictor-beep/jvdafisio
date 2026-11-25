@@ -10,246 +10,249 @@
 <title>Reels do João Vitor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Caveat:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap">
 <style>
-/* Layout: página de venda em faixas alternadas (papel / água clara / marinho), no molde da Meg Kilgore,
-   com a identidade do João: marinho + aqua. Serifada condensada nos títulos, itálico na palavra que importa.
-   Cor (16/11, método do @jorgedaweb): 60/30/10. 60 = papel e água; 30 = marinho e teal (texto e faixas escuras);
-   10 = UMA cor de destaque, o coral, só no que é pra clicar. Coral #F2545F é o complementar do teal da marca
-   (o "azul com branco + coralzinho" dele). Texto marinho no coral: 5,1:1; botão contra o papel: 3,2:1. */
+/* v18 (25/11): design system "João Vitor · Vídeo" (claude.ai/artifact/Nzd85AAW1PBzug8Qciq9gF), tirado do site
+   da Olga Krupetska no Behance: três tons (deep-tone #232B60, silent-air #F2F3F5, soft-echo #767B9C), Manrope só,
+   título em caixa alta com a linha fina embaixo, linha numerada (01), botão em pílula com a seta no círculo e a
+   onda da timeline como única marca. Sem sombra, sem degradê, sem serifada, sem letra de mão.
+   Os nomes antigos das variáveis ficaram (papel, agua, cartao...) pra não mexer no HTML; os valores são os tokens. */
 :root {
-  --papel: #F7FBFA;
-  --agua: #E3F4F1;
-  --ink: #0A1C2E;
-  --ink-2: #4A5E6E;
-  --acento: #0C7A75;
-  --marinho: #0A1C2E;
-  --destaque: #F2545F;
-  --destaque-ink: #0A1C2E;
-  --btn: #0A1C2E;
-  --btn-ink: #F7FBFA;
-  --cartao: #FFFFFF;
-  --moldura: #FFFFFF;
-  --linha: rgba(10, 28, 46, .13);
-  --sombra: 0 24px 50px -24px rgba(10, 28, 46, .35);
-  --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
-  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
-  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
-  --mao: "Caveat", "Segoe Print", cursive;
+  --papel: #F2F3F5;        /* ground */
+  --agua: #E6E7EF;         /* tint */
+  --ink: #232B60;          /* ink = deep-tone */
+  --ink-2: #565B7D;        /* ink-muted */
+  --acento: #232B60;
+  --eco: #767B9C;          /* soft-echo */
+  --rec: #C8323A;
+  --marinho: #232B60;      /* band */
+  --btn: #232B60;
+  --btn-ink: #F2F3F5;
+  --cartao: #FFFFFF;       /* surface */
+  --linha: rgba(35, 43, 96, .16);
+  --sans: Manrope, "Helvetica Neue", Arial, sans-serif;
+  --onda: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 187 32' fill='%23767B9C'%3E%3Crect x='0' y='14' width='3' height='4' rx='1.5'/%3E%3Crect x='8' y='12' width='3' height='8' rx='1.5'/%3E%3Crect x='16' y='13' width='3' height='6' rx='1.5'/%3E%3Crect x='24' y='9' width='3' height='14' rx='1.5'/%3E%3Crect x='32' y='5' width='3' height='22' rx='1.5'/%3E%3Crect x='40' y='10' width='3' height='12' rx='1.5'/%3E%3Crect x='48' y='13' width='3' height='6' rx='1.5'/%3E%3Crect x='56' y='7' width='3' height='18' rx='1.5'/%3E%3Crect x='64' y='1' width='3' height='30' rx='1.5'/%3E%3Crect x='72' y='8' width='3' height='16' rx='1.5'/%3E%3Crect x='80' y='11' width='3' height='10' rx='1.5'/%3E%3Crect x='88' y='4' width='3' height='24' rx='1.5'/%3E%3Crect x='96' y='9' width='3' height='14' rx='1.5'/%3E%3Crect x='104' y='12' width='3' height='8' rx='1.5'/%3E%3Crect x='112' y='14' width='3' height='4' rx='1.5'/%3E%3Crect x='120' y='11' width='3' height='10' rx='1.5'/%3E%3Crect x='128' y='8' width='3' height='16' rx='1.5'/%3E%3Crect x='136' y='12' width='3' height='8' rx='1.5'/%3E%3Crect x='144' y='14' width='3' height='4' rx='1.5'/%3E%3Crect x='152' y='15' width='3' height='2' rx='1.5'/%3E%3Crect x='160' y='13' width='3' height='6' rx='1.5'/%3E%3Crect x='168' y='10' width='3' height='12' rx='1.5'/%3E%3Crect x='176' y='13' width='3' height='6' rx='1.5'/%3E%3Crect x='184' y='14.5' width='3' height='3' rx='1.5'/%3E%3C/svg%3E");
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --destaque: #FF6B74;
-  --btn: #7FE3DE; --btn-ink: #0A1C2E; --cartao: #12304B; --moldura: #163552;
-  --linha: rgba(127, 227, 222, .16); --sombra: 0 24px 50px -24px rgba(0, 0, 0, .7); color-scheme: dark }
-  :root:not([data-theme="light"]) .escura { --papel: #061220; --cartao: #0E2538 } }
+  --papel: #12163A; --agua: #1F2658; --ink: #F2F3F5; --ink-2: #A9ADC8; --acento: #F2F3F5; --rec: #FF6369;
+  --marinho: #0B0E28; --btn: #F2F3F5; --btn-ink: #232B60; --cartao: #1B2150; --linha: rgba(242, 243, 245, .16); color-scheme: dark } }
 :root[data-theme="dark"] {
-  --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --destaque: #FF6B74;
-  --btn: #7FE3DE; --btn-ink: #0A1C2E; --cartao: #12304B; --moldura: #163552;
-  --linha: rgba(127, 227, 222, .16); --sombra: 0 24px 50px -24px rgba(0, 0, 0, .7); color-scheme: dark }
-:root[data-theme="dark"] .escura { --papel: #061220; --cartao: #0E2538 }
+  --papel: #12163A; --agua: #1F2658; --ink: #F2F3F5; --ink-2: #A9ADC8; --acento: #F2F3F5; --rec: #FF6369;
+  --marinho: #0B0E28; --btn: #F2F3F5; --btn-ink: #232B60; --cartao: #1B2150; --linha: rgba(242, 243, 245, .16); color-scheme: dark }
 
 * { box-sizing: border-box }
 [hidden] { display: none !important }
-body { background: var(--papel); color: var(--ink); font: 400 1rem/1.6 var(--body); margin: 0 }
-h1, h2, h3 { font-family: var(--serif); font-weight: 400; text-wrap: balance; margin: 0; letter-spacing: -.01em }
-h1 em, h2 em { color: var(--acento) }
+body { background: var(--papel); color: var(--ink); font: 400 1.0625rem/1.55 var(--sans); margin: 0 }
+h1, h2, h3 { font-family: var(--sans); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -.01em }
+em { font-style: normal }
 p { margin: 0 }
 a { color: inherit }
-:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 6px }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px }
 .num { font-variant-numeric: tabular-nums }
 
-.faixa { padding-inline: 16px; padding-block: 72px; border-top: 1px solid var(--linha) }
+.faixa { padding-inline: 16px; padding-block: 64px; border-top: 1px solid var(--linha) }
+@media (min-width: 860px) { .faixa { padding-block: 96px } }
 .faixa.agua { background: var(--agua) }
-/* faixa escura: o marinho dos 30%, onde o número e o botão mais aparecem */
-.escura { --papel: #0A1C2E; --agua: #10293F; --ink: #EAF5F6; --ink-2: #9BB4C3; --acento: #7FE3DE; --cartao: #12304B; --linha: rgba(127, 227, 222, .16); background: var(--papel); color: var(--ink); color-scheme: dark }
-.miolo { max-width: 1080px; margin: 0 auto; display: grid; gap: 22px }
+/* band: a faixa marinho */
+.escura { --papel: var(--marinho); --agua: var(--marinho); --ink: #F2F3F5; --ink-2: #A9ADC8; --acento: #F2F3F5; --cartao: rgba(242, 243, 245, .06); --linha: rgba(242, 243, 245, .18); --btn: #F2F3F5; --btn-ink: #232B60; background: var(--papel); color: var(--ink); color-scheme: dark }
+.miolo { max-width: 1080px; margin: 0 auto; display: grid; gap: 24px }
 .centro { text-align: center; justify-items: center }
-.olho { font: 700 .72rem/1.2 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--acento) }
-.olho.ink { color: var(--ink) }
-.h2 { font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.02 }
-.sub { color: var(--ink-2); max-width: 56ch; font-size: 1.05rem }
 
-.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--destaque); color: var(--destaque-ink); font: 700 .78rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-decoration: none; padding: 17px 24px; border-radius: 999px; transition: transform .15s, box-shadow .15s }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -12px var(--destaque) }
-.link { font: 700 .74rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); text-underline-offset: 6px }
-.mao { font: 600 1.45rem/1.1 var(--mao); color: var(--acento); display: inline-block; transform: rotate(-3deg) }
+/* label: nome da seção em caixa alta; .secao ganha a onda da timeline embaixo */
+.olho { font: 500 .75rem/1.3 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2) }
+.olho.secao { color: var(--ink); display: grid; gap: 8px; justify-items: inherit }
+.olho.secao::after { content: ""; width: 150px; height: 26px; background: var(--onda) no-repeat left center / contain }
+.centro .olho.secao::after { background-position: center }
+
+/* display + display-sub: título em caixa alta e a linha fina (o <em>) embaixo, à direita */
+.h2, .hero h1 { display: grid; width: fit-content; max-width: 100%; text-transform: uppercase; font-weight: 700; letter-spacing: -.045em; line-height: .94 }
+.h2 { font-size: clamp(2.3rem, 7vw, 4.4rem) }
+.h2 em, .hero h1 em { display: block; justify-self: end; text-align: right; font-weight: 400; font-size: max(.4em, 1.1rem); letter-spacing: -.02em; line-height: 1.1; margin-top: .45em; color: var(--ink) }
+.h2 br, .hero h1 br { display: none }
+.sub { color: var(--ink-2); max-width: 56ch; font-size: 1.0625rem }
+
+/* botão: pílula com a seta no círculo */
+.btn { display: inline-flex; align-items: center; gap: 14px; background: var(--btn); color: var(--btn-ink); font: 600 1rem/1.2 var(--sans); text-decoration: none; padding: 6px 6px 6px 22px; border-radius: 999px; text-align: left }
+.btn i { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 999px; background: var(--btn-ink); color: var(--btn); transition: transform .2s }
+.btn i svg { width: 16px; height: 16px }
+.btn:hover i { transform: translateX(3px) }
+.link { font: 600 1rem/1.2 var(--sans); color: var(--ink); text-underline-offset: 6px }
+
+/* topo */
+.topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; max-width: 1080px; margin: 0 auto; padding: 20px 16px 0; font-size: .875rem; color: var(--ink-2) }
+.topo b { font-weight: 700; font-size: 1.05rem; letter-spacing: -.02em; color: var(--ink) }
+@media (min-width: 1112px) { .topo { padding-inline: 0 } }
 
 /* hero */
-.hero { padding-inline: 16px; padding-block: 48px 64px; overflow: clip }
+.hero { padding-inline: 16px; padding-block: 40px 64px; overflow: clip }
 .hero .miolo { gap: 44px; align-items: center }
-@media (min-width: 860px) { .hero .miolo { grid-template-columns: 1.15fr .85fr } .hero { padding-block: 80px } }
-.hero-txt { display: grid; gap: 22px; min-width: 0 }
-.hero h1 { font-size: clamp(3.1rem, 11vw, 5.6rem); line-height: .95 }
-.hero .sub { font-size: 1.08rem }
-.acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px }
-.fontes-dado { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: .78rem; color: var(--ink-2) }
-.fontes-dado span { border: 1px solid var(--linha); background: var(--cartao); border-radius: 999px; padding: 4px 10px; font-weight: 600; color: var(--ink) }
+@media (min-width: 860px) { .hero .miolo { grid-template-columns: 1.2fr .8fr } .hero { padding-block: 72px 96px } }
+.hero-txt { display: grid; gap: 24px; min-width: 0 }
+.hero h1 { font-size: clamp(2.6rem, 9.5vw, 5.4rem) }
+.acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px }
+.fontes-dado { font-size: .875rem; color: var(--ink-2) }
 
-.palco { position: relative; justify-self: center; width: min(300px, 74vw); padding-bottom: 18px; isolation: isolate }
-/* o "degradê" do Jorge: duas cores da marca + branco, borradas atrás do celular */
-.palco::before { content: ""; position: absolute; inset: 4% -16% 0; z-index: -1; border-radius: 50%; background: radial-gradient(45% 40% at 28% 32%, var(--acento), transparent 70%), radial-gradient(42% 38% at 74% 72%, var(--destaque), transparent 70%), radial-gradient(30% 30% at 55% 50%, #FFFFFF, transparent 70%); filter: blur(46px); opacity: .42 }
-.cel { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 34px; overflow: hidden; background: var(--moldura); border: 8px solid var(--moldura); outline: 1px solid var(--linha); box-shadow: var(--sombra) }
-.cel video { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 26px }
-.prova { position: absolute; right: -14px; bottom: 0; background: var(--cartao); border: 1px solid var(--linha); border-radius: 16px; padding: 14px 16px; box-shadow: var(--sombra); display: grid; gap: 2px; min-width: 168px }
+.palco { position: relative; justify-self: center; width: min(300px, 74vw); padding-bottom: 18px }
+.cel { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 14px; overflow: hidden; background: var(--agua); border: 1px solid var(--linha) }
+.cel video { width: 100%; height: 100%; object-fit: cover; display: block }
+.prova { position: absolute; right: -14px; bottom: 0; background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 14px 16px; display: grid; gap: 4px; min-width: 176px }
 @media (min-width: 860px) { .prova { right: -56px } }
-.prova small { font: 700 .62rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--acento) }
-.prova .ponto { color: var(--destaque); font-style: normal }
-.prova b { font: 400 2.5rem/1 var(--serif) }
-.prova span { font-size: .78rem; color: var(--ink-2) }
+.prova small { font: 500 .72rem/1.2 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--ink) }
+.prova .ponto { color: var(--rec); font-style: normal }
+.prova b { font: 700 2.6rem/1 var(--sans); letter-spacing: -.04em }
+.prova span { font-size: .8rem; color: var(--ink-2); line-height: 1.35 }
 
 /* faixa que corre */
-.corre { background: var(--marinho); color: #F7FBFA; overflow: hidden }
-.corre-trilho { display: flex; width: max-content; animation: correr 28s linear infinite }
-.corre-trilho span { font: 700 .78rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 16px 28px; white-space: nowrap }
-.corre-trilho em { font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0; text-transform: none; color: #7FE3DE }
-.corre-trilho span:nth-child(even) { color: var(--destaque) }
+.corre { background: var(--marinho); color: #F2F3F5; overflow: hidden }
+.corre-trilho { display: flex; width: max-content; animation: correr 32s linear infinite }
+.corre-trilho span { font: 600 .82rem/1 var(--sans); letter-spacing: .04em; text-transform: uppercase; padding: 18px 22px; white-space: nowrap }
+.corre-trilho em { font-weight: 300 }
+.corre-trilho span:nth-child(even) { color: #767B9C }
 @keyframes correr { to { transform: translateX(-50%) } }
 
 /* vídeos */
-.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 8px 16px 12px; margin-inline: -16px; scrollbar-width: thin; width: calc(100% + 32px) }
-@media (min-width: 760px) { .trilho { grid-auto-flow: row; grid-template-columns: repeat(5, 1fr); overflow: visible; margin-inline: 0; padding: 8px 0 0; width: 100% } }
 .reel { scroll-snap-align: start; display: grid; gap: 10px; align-content: start; min-width: 0; text-align: left }
-.tela { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 22px; overflow: hidden; background: var(--moldura); border: 5px solid var(--moldura); outline: 1px solid var(--linha); box-shadow: var(--sombra) }
-.tela video { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 17px }
-.views { position: absolute; left: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 6px; background: rgba(247, 251, 250, .94); color: #0A1C2E; font: 700 .9rem/1 var(--body); padding: 6px 9px; border-radius: 9px }
-.views svg { width: 10px; height: 10px; fill: #0C7A75 }
+.tela { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 14px; overflow: hidden; background: var(--agua); border: 1px solid var(--linha) }
+.tela video { width: 100%; height: 100%; object-fit: cover; display: block }
+.views { position: absolute; left: 8px; bottom: 8px; display: inline-flex; align-items: center; gap: 6px; background: #FFFFFF; color: #232B60; font: 700 .9rem/1 var(--sans); padding: 6px 9px; border-radius: 6px }
+.views svg { width: 9px; height: 9px; fill: #C8323A }
 /* botão de som: todo vídeo abre mudo e tem o seu (criado no script, menos nos data-mudo) */
-.som { position: absolute; right: 8px; top: 8px; z-index: 2; display: inline-flex; align-items: center; gap: 6px; min-height: 34px; border: 0; cursor: pointer; background: rgba(10, 28, 46, .74); color: #F7FBFA; font: 700 .62rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 8px 11px; border-radius: 999px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px) }
+.som { position: absolute; right: 8px; top: 8px; z-index: 2; display: inline-flex; align-items: center; gap: 6px; min-height: 34px; border: 0; cursor: pointer; background: rgba(35, 43, 96, .78); color: #F2F3F5; font: 600 .75rem/1 var(--sans); padding: 8px 12px; border-radius: 999px }
 .som svg { width: 15px; height: 15px; fill: currentColor; flex: none }
 .som .onda { display: none }
-.som[aria-pressed="true"] { background: var(--destaque); color: var(--destaque-ink) }
+.som[aria-pressed="true"] { background: #F2F3F5; color: #232B60 }
 .som[aria-pressed="true"] .onda { display: inline }
 .som[aria-pressed="true"] .corta { display: none }
 .cel .som { right: 12px; top: 12px }
-.reel h3 { font: 600 .95rem/1.3 var(--body) }
-.meta { display: flex; flex-wrap: wrap; gap: 3px 10px; font-size: .78rem; color: var(--ink-2) }
-.meta a { color: var(--acento); font-weight: 600; text-decoration: none }
-.meta a:hover { text-decoration: underline }
-.meta .forte { color: var(--acento); font-weight: 600 }
+.reel h3 { font: 600 1rem/1.3 var(--sans) }
+.meta { display: flex; flex-wrap: wrap; gap: 3px 10px; font-size: .82rem; color: var(--ink-2) }
+.meta a { color: var(--ink); font-weight: 600 }
+.meta .forte { color: var(--ink); font-weight: 600 }
 .trio { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 8px 16px 12px; margin-inline: -16px; width: calc(100% + 32px); scrollbar-width: thin }
-@media (min-width: 900px) { .trio { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 1000px } }
-.dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 440px; justify-self: center }
-.nota-mao { display: flex; align-items: center; gap: 8px; justify-content: center }
-.nota-mao svg { width: 40px; height: 28px; stroke: var(--acento); fill: none; stroke-width: 2; stroke-linecap: round }
+@media (min-width: 900px) { .trio { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 840px } }
 
 /* clínica */
-.clinica .miolo { gap: 40px; align-items: center }
+.clinica .miolo { gap: 48px; align-items: center }
 @media (min-width: 860px) { .clinica .miolo { grid-template-columns: .8fr 1.2fr } }
 .lado { display: grid; gap: 14px; justify-items: center }
 .lado .cel { width: min(280px, 72vw) }
 .chave { display: inline-flex; background: var(--cartao); border: 1px solid var(--linha); border-radius: 999px; padding: 4px; gap: 4px }
-.chave button { border: 0; background: none; cursor: pointer; font: 700 .7rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); padding: 10px 16px; border-radius: 999px }
+.chave button { border: 0; background: none; cursor: pointer; font: 600 .85rem/1 var(--sans); color: var(--ink-2); padding: 11px 16px; border-radius: 999px }
 .chave button[aria-pressed="true"] { background: var(--btn); color: var(--btn-ink) }
-.lado .legenda { font-size: .82rem; color: var(--ink-2); text-align: center }
-.clinica-txt { display: grid; gap: 18px; min-width: 0 }
-.barras { display: grid; gap: 14px; background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 18px }
-.barras > small { font: 700 .66rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2) }
+.lado .legenda { font-size: .85rem; color: var(--ink-2); text-align: center }
+.clinica-txt { display: grid; gap: 22px; min-width: 0 }
+.barras { display: grid; gap: 16px; background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 20px }
+.barras > small { font: 500 .75rem/1.3 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2) }
+.barras > small:last-child { text-transform: none; letter-spacing: 0; font-size: .85rem }
 .barra { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "r v" "t t"; gap: 6px 12px; align-items: end }
-.barra .r { grid-area: r; font-weight: 600; font-size: .92rem; line-height: 1.25; min-width: 0 }
-.barra .r small { display: block; font-weight: 400; font-size: .76rem; color: var(--ink-2) }
-.barra .t { grid-area: t; display: block; height: 10px }
-.barra .t i { display: block; height: 100%; min-width: 6px; border-radius: 0 4px 4px 0; background: var(--linha) }
-.barra .t i.nosso { background: var(--acento) }
-.barra b { grid-area: v; font: 400 1.7rem/1 var(--serif) }
-.local { border-left: 3px solid var(--acento); padding-left: 14px; color: var(--ink) }
+.barra .r { grid-area: r; font-weight: 600; font-size: .95rem; line-height: 1.25; min-width: 0 }
+.barra .r small { display: block; font-weight: 400; font-size: .8rem; color: var(--ink-2) }
+.barra .t { grid-area: t; display: block; height: 8px }
+.barra .t i { display: block; height: 100%; min-width: 6px; border-radius: 999px; background: var(--linha) }
+.barra .t i.nosso { background: var(--ink) }
+.barra b { grid-area: v; font: 700 1.6rem/1 var(--sans); letter-spacing: -.03em }
+.local { border-top: 1px solid var(--linha); padding-top: 18px; color: var(--ink) }
 
 /* dinheiro */
 .contas { display: grid; gap: 14px; width: 100%; max-width: 820px; text-align: left }
 @media (min-width: 620px) { .contas { grid-template-columns: 1fr 1fr } }
-.conta { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 6px; align-content: start }
-.conta small { font: 700 .66rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2) }
-.conta b { font: 400 2.6rem/1 var(--serif) }
-.conta span { color: var(--ink-2); font-size: .88rem }
-.grande { font: 400 clamp(4rem, 17vw, 8.5rem)/.9 var(--serif); color: var(--acento); letter-spacing: -.02em }
-.letrinha { color: var(--ink-2); font-size: .8rem; max-width: 70ch }
+.conta { background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 20px; display: grid; gap: 8px; align-content: start }
+.conta small { font: 500 .75rem/1.3 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2) }
+.conta b { font: 700 2.4rem/1 var(--sans); letter-spacing: -.04em }
+.grande { font: 700 clamp(4rem, 17vw, 8.5rem)/.9 var(--sans); letter-spacing: -.05em }
+.letrinha { color: var(--ink-2); font-size: .85rem; max-width: 70ch }
 
 /* pra quem */
-.quem .miolo { gap: 40px }
+.quem .miolo { gap: 48px }
 @media (min-width: 860px) { .quem .miolo { grid-template-columns: 1fr 1fr; align-items: start } }
-.quem-txt { display: grid; gap: 18px; min-width: 0 }
-.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px }
+.quem-txt { display: grid; gap: 22px; min-width: 0 }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; text-align: left }
 .checks li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start }
-.checks svg { width: 18px; height: 18px; margin-top: 3px; stroke: var(--acento); fill: none; stroke-width: 2.5 }
+.checks svg { width: 18px; height: 18px; margin-top: 3px; stroke: var(--ink); fill: none; stroke-width: 2 }
 .ofertas { display: grid; gap: 14px }
-.oferta { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 22px; display: grid; gap: 10px }
-.oferta h3 { font-size: 1.9rem; line-height: 1.05 }
+.oferta { background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 24px; display: grid; gap: 12px }
+.oferta h3 { font-size: 1.45rem; line-height: 1.15; letter-spacing: -.02em }
 .oferta p { color: var(--ink-2) }
 .oferta .btn { justify-self: start; margin-top: 4px }
-.zap { font: 700 .8rem/1 var(--mono); letter-spacing: .1em; color: var(--ink-2) }
+.oferta .link { font-size: .92rem; font-weight: 500; color: var(--ink-2) }
+.zap { font: 600 .95rem/1 var(--sans); color: var(--ink-2) }
+
+/* linha numerada (01): edição, pra quem é, como fechar */
+.linhas { list-style: none; margin: 0; padding: 0; counter-reset: n; display: grid; text-align: left; width: 100% }
+.linhas > li { counter-increment: n; display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--linha) }
+.linhas > li:first-child { border-top: 1px solid var(--linha) }
+.linhas > li::before { content: "(" counter(n, decimal-leading-zero) ")"; font: 300 1.6rem/1 var(--sans); color: var(--ink-2); font-variant-numeric: tabular-nums; padding-top: 2px }
+.linhas b, .linhas h3 { font-weight: 600 }
+.linhas h3 { font-size: 1.3rem; line-height: 1.2 }
+.linhas p { color: var(--ink-2); margin-top: 4px }
+@media (min-width: 760px) { .linhas > li { grid-template-columns: 96px 1fr; padding: 26px 0 } .linhas > li::before { font-size: 2rem } }
+.passos { max-width: 820px }
 
 /* fala do jeito que quiser */
 .fichas { display: grid; gap: 12px; overflow: hidden; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent) }
 .fichas-trilho { display: flex; gap: 12px; width: max-content; animation: correr 40s linear infinite }
 .fichas-trilho.volta { animation-direction: reverse }
-.fichas-trilho span { font: italic 400 1.15rem/1 var(--serif); border: 1px solid var(--linha); background: var(--cartao); border-radius: 999px; padding: 11px 18px; white-space: nowrap }
+.fichas-trilho span { font: 400 1rem/1 var(--sans); border: 1px solid var(--linha); border-radius: 999px; padding: 12px 18px; white-space: nowrap }
 
-/* edição: texto à esquerda, celular à direita */
+/* edição: texto à esquerda, vídeo à direita */
 @media (min-width: 860px) { .clinica.invertida .miolo { grid-template-columns: 1.2fr .8fr } }
-
 
 /* produtos digitais */
 .produtos { display: grid; gap: 16px; width: 100% }
 @media (min-width: 980px) { .produtos { grid-template-columns: repeat(2, 1fr); max-width: 820px; margin-inline: auto } .produtos .produto { grid-template-columns: 1fr; align-content: start } }
-.produto { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 18px; align-items: center; min-width: 0 }
+.produto { background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 24px; display: grid; gap: 18px; align-items: center; min-width: 0 }
 @media (min-width: 560px) { .produto { grid-template-columns: 170px 1fr } }
-.produto img { width: 100%; max-width: 220px; aspect-ratio: 1 / 1.414; object-fit: cover; border-radius: 8px; box-shadow: var(--sombra); justify-self: center }
+.produto img { width: 100%; max-width: 220px; aspect-ratio: 1 / 1.414; object-fit: cover; border-radius: 6px; border: 1px solid var(--linha); justify-self: center }
 .produto-txt { display: grid; gap: 12px; min-width: 0 }
-.produto h3 { font-size: 2rem; line-height: 1.05 }
+.produto h3 { font-size: 1.6rem; line-height: 1.1; letter-spacing: -.02em }
 .produto p { color: var(--ink-2) }
-.produto .preco { font: 400 2.2rem/1 var(--serif) }
+.produto .preco { font: 700 2rem/1 var(--sans); letter-spacing: -.04em }
 
-/* como fechar */
-.passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; width: 100%; max-width: 980px; text-align: left }
-@media (min-width: 760px) { .passos { grid-template-columns: repeat(3, 1fr) } }
-.passos li { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 8px; align-content: start }
-.passos b { font: 400 2.6rem/1 var(--serif); color: var(--acento) }
-.passos h3 { font-size: 1.6rem; line-height: 1.1 }
-.passos p { color: var(--ink-2) }
+/* botão fixo do WhatsApp */
+.zap-fixo { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20; display: inline-flex; align-items: center; gap: 8px; background: #1FA855; color: #FFFFFF; font: 700 .9rem/1 var(--sans); text-decoration: none; padding: 13px 18px; border-radius: 999px; box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .45) }
+.zap-fixo svg { width: 20px; height: 20px; fill: currentColor }
+
+/* dúvidas: linhas com fio, como as numeradas */
+.faq { width: 100%; max-width: 760px; display: grid; text-align: left; border-top: 1px solid var(--linha) }
+.faq details { border-bottom: 1px solid var(--linha); padding: 4px 0 }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 1.1rem; padding: 16px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px }
+.faq summary::-webkit-details-marker { display: none }
+.faq summary::after { content: "+"; font: 300 1.6rem/1 var(--sans); color: var(--ink-2) }
+.faq details[open] summary::after { content: "−" }
+.faq p { color: var(--ink-2); padding-bottom: 18px; max-width: 62ch }
+
+footer { padding-inline: 16px; padding-block: 28px 96px; border-top: 1px solid var(--linha) }
+footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: .85rem; color: var(--ink-2) }
+
+@media (prefers-reduced-motion: reduce) {
+  .corre-trilho, .fichas-trilho { animation: none }
+  .btn:hover i { transform: none }
+}
 
 /* objetivo: um card por tipo de vídeo */
 .objetivos { display: grid; grid-auto-flow: column; grid-auto-columns: 80%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 8px 16px 12px; margin-inline: -16px; width: calc(100% + 32px); scrollbar-width: thin; text-align: left }
 @media (min-width: 900px) { .objetivos { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 1040px } }
-.objetivo { scroll-snap-align: start; display: grid; gap: 12px; align-content: start; min-width: 0; background: var(--cartao); border: 1px solid var(--linha); border-radius: 24px; padding: 16px; box-shadow: var(--sombra) }
-.objetivo .tela { width: 100%; max-width: 240px; margin-inline: auto; box-shadow: none }
-.objetivo h3 { font: 400 1.7rem/1.05 var(--serif) }
-.objetivo h3 em { color: var(--acento) }
+.objetivo { scroll-snap-align: start; display: grid; gap: 12px; align-content: start; min-width: 0; background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 16px }
+.objetivo .tela { width: 100%; max-width: 240px; margin-inline: auto }
+.objetivo h3 { font-size: 1.3rem; line-height: 1.2; letter-spacing: -.02em }
 .objetivo p { color: var(--ink-2); font-size: .95rem }
-.objetivo .serve { border-top: 1px dashed var(--linha); padding-top: 10px; font: 600 .78rem/1.4 var(--mono); color: var(--ink) }
-.objetivo .serve span { color: var(--acento) }
-
-/* botão fixo do WhatsApp */
-.zap-fixo { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20; display: inline-flex; align-items: center; gap: 8px; background: #1FA855; color: #FFFFFF; font: 700 .9rem/1 var(--body); text-decoration: none; padding: 13px 18px; border-radius: 999px; box-shadow: 0 10px 28px -8px rgba(0, 0, 0, .45) }
-.zap-fixo svg { width: 20px; height: 20px; fill: currentColor }
-
-/* dúvidas */
-.faq { width: 100%; max-width: 720px; display: grid; gap: 10px; text-align: left }
-.faq details { background: var(--cartao); border: 1px solid var(--linha); border-radius: 14px; padding: 4px 18px }
-.faq summary { cursor: pointer; font-weight: 600; padding: 12px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px }
-.faq summary::-webkit-details-marker { display: none }
-.faq summary::after { content: "+"; color: var(--acento); font: 700 1.1rem/1 var(--mono) }
-.faq details[open] summary::after { content: "−" }
-.faq p { color: var(--ink-2); padding-bottom: 14px }
-
-footer { padding-inline: 16px; padding-block: 28px 96px; border-top: 1px solid var(--linha) }
-footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; font-size: .82rem; color: var(--ink-2) }
-
-@media (prefers-reduced-motion: reduce) {
-  .corre-trilho, .fichas-trilho { animation: none }
-  .btn:hover { transform: none }
-}
+.objetivo .serve { border-top: 1px solid var(--linha); padding-top: 12px; font-size: .88rem; color: var(--ink-2) }
+.objetivo .serve span { color: var(--ink); font-weight: 600 }
 </style>
+
+<nav class="topo" aria-label="Nome"><b>João Vitor</b><span>Montes Claros · atendo online</span></nav>
 
 <header class="hero">
   <div class="miolo">
     <div class="hero-txt">
-      <span class="olho">@jvdafisio · vídeo e monetização</span>
-      <h1>Vídeo que traz <em>cliente.</em><br>Perfil que dá <em>dinheiro.</em></h1>
+      <span class="olho secao">@jvdafisio · vídeo e monetização</span>
+      <h1>Vídeo que traz cliente.<em>Perfil que dá dinheiro.</em></h1>
       <p class="sub">Sou o João Vitor, de Montes Claros. Faço os vídeos de uma clínica de fisioterapia, comerciais, divulgação de curso e cobertura de evento, e ensino quem quer aprender a fazer os próprios. Os números desta página saíram direto das plataformas.</p>
       <div class="acoes">
-        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
         <a class="link" href="#objetivo">Ver trabalhos</a>
       </div>
-      <div class="fontes-dado">Números de <span>Instagram</span> <span>TikTok</span> <span>Kiwify</span> <span>Shopee</span></div>
+      <p class="fontes-dado">Números de Instagram · TikTok · Kiwify · Shopee</p>
     </div>
     <div class="palco">
       <div class="cel">
@@ -266,20 +269,20 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 
 <div class="corre" aria-hidden="true">
   <div class="corre-trilho">
-    <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>✦</span>
-    <span>Clínica com <em>5x</em> mais views</span><span>✦</span>
-    <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>✦</span>
-    <span>Comercial, curso e <em>evento</em></span><span>✦</span>
-    <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>✦</span>
-    <span>Clínica com <em>5x</em> mais views</span><span>✦</span>
-    <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>✦</span>
-    <span>Comercial, curso e <em>evento</em></span><span>✦</span>
+    <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>●</span>
+    <span>Clínica com <em>5x</em> mais views</span><span>●</span>
+    <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>●</span>
+    <span>Comercial, curso e <em>evento</em></span><span>●</span>
+    <span>Do rolo da câmera pro vídeo que <em>vende</em></span><span>●</span>
+    <span>Clínica com <em>5x</em> mais views</span><span>●</span>
+    <span>R$ 31 mil <em>faturados</em> com conteúdo</span><span>●</span>
+    <span>Comercial, curso e <em>evento</em></span><span>●</span>
   </div>
 </div>
 
 <section class="faixa" id="objetivo" aria-labelledby="t-objetivo">
   <div class="miolo centro">
-    <span class="olho">Primeiro, o objetivo</span>
+    <span class="olho secao">Primeiro, o objetivo</span>
     <h2 class="h2" id="t-objetivo">Todo vídeo tem<br><em>um trabalho.</em></h2>
     <p class="sub">Vídeo pra crescer, vídeo pra trazer paciente e vídeo pra vender não se gravam nem se editam do mesmo jeito. Antes de gravar, a gente decide qual é o seu.</p>
     <div class="objetivos">
@@ -317,7 +320,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <div class="serve">Serve pra: <span>vender produto, curso ou link de afiliado</span></div>
       </article>
     </div>
-    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina.%20Meu%20objetivo%20com%20v%C3%ADdeo%20%C3%A9%3A%20" target="_blank" rel="noopener">Me conta o seu objetivo →</a>
+    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina.%20Meu%20objetivo%20com%20v%C3%ADdeo%20%C3%A9%3A%20" target="_blank" rel="noopener">Me conta o seu objetivo <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
   </div>
 </section>
 
@@ -335,8 +338,8 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
       <p class="legenda">Mesma clínica, mesmo fisioterapeuta. Toque pra alternar.<br>O "depois" teve 233 curtidas e 76 comentários.</p>
     </div>
     <div class="clinica-txt">
-      <span class="olho">Atrair paciente · trabalho para clínica</span>
-      <h2 class="h2" id="t-clinica">Do vídeo de 1,8 mil views para <em>9 mil.</em></h2>
+      <span class="olho secao">Atrair paciente · trabalho para clínica</span>
+      <h2 class="h2" id="t-clinica">De 1,8 mil views para 9 mil.<em>Mesma clínica, mesmo fisio.</em></h2>
       <p class="sub">FisioGolden Saúde, clínica de fisioterapia esportiva do Jefferson Teixeira, em Montes Claros. No segundo vídeo que fizemos juntos, o Reel fez 5 vezes o que um vídeo típico do perfil fazia antes.</p>
       <div class="barras" role="img" aria-label="Views por vídeo: antes, mediana de 1.817; primeiro vídeo com a gente, 3.687; segundo, 9.037; o do roxo depois da cirurgia, 5.954">
         <small>Views por Reel no @fisiogoldensaude</small>
@@ -347,14 +350,14 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <small>Mediana dos 6 Reels que fizemos juntos: 3.745, o dobro do vídeo típico de antes. Contado em 16/11.</small>
       </div>
       <p class="local"><strong>View de quem mora perto.</strong> O conteúdo fala com o paciente de Montes Claros, e essas visualizações locais já estão virando paciente na clínica.</p>
-      <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20v%C3%ADdeos%20pra%20minha%20cl%C3%ADnica." target="_blank" rel="noopener">Quero isso na minha clínica →</a></div>
+      <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20v%C3%ADdeos%20pra%20minha%20cl%C3%ADnica." target="_blank" rel="noopener">Quero isso na minha clínica <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a></div>
     </div>
   </div>
 </section>
 
 <section class="faixa" aria-labelledby="t-avulso">
   <div class="miolo centro">
-    <span class="olho">Vídeos avulsos</span>
+    <span class="olho secao">Vídeos avulsos</span>
     <h2 class="h2" id="t-avulso">Também faço vídeo <em>sob encomenda.</em></h2>
     <p class="sub">Não precisa de pacote mensal. Faço o vídeo que você precisa: comercial, divulgação de curso, cobertura de evento ou depoimento. Alguns que já fiz, além dos de cima:</p>
     <div class="trio">
@@ -380,23 +383,23 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <div class="meta"><span class="forte">LAFEO</span><span>vídeo do evento</span></div>
       </article>
     </div>
-    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20um%20v%C3%ADdeo%20avulso." target="_blank" rel="noopener">Quero um vídeo assim →</a>
+    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20um%20v%C3%ADdeo%20avulso." target="_blank" rel="noopener">Quero um vídeo assim <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
   </div>
 </section>
 
 <section class="faixa agua clinica invertida" id="edicao" aria-labelledby="t-edicao">
   <div class="miolo">
     <div class="clinica-txt">
-      <span class="olho">Gravação e edição</span>
+      <span class="olho secao">Gravação e edição</span>
       <h2 class="h2" id="t-edicao">O que segura a pessoa <em>até o fim.</em></h2>
       <p class="sub">Gravar bem dá a matéria-prima: luz, som e a frase certa. A edição decide se a pessoa fica. Ao lado, o mesmo vídeo como saiu do celular e como foi pro ar. É isso que entra no seu:</p>
-      <ul class="checks">
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>Os 3 primeiros segundos:</b> o gancho entra antes de qualquer "oi, gente". É ali que a pessoa decide se fica.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>O meio:</b> corte colado na fala, sem respiração e sem "é…", e imagem que mostra o que você está falando.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>O fim:</b> um convite claro, do jeito do seu objetivo. Seguir, comentar, marcar avaliação ou comprar.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>O resto:</b> legenda que acompanha a voz, som só onde ajuda, cor corrigida e capa que funciona no grid.</span></li>
-      </ul>
-      <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20mandar%20meus%20v%C3%ADdeos%20pra%20voc%C3%AA%20editar." target="_blank" rel="noopener">Quero meus vídeos editados →</a></div>
+      <ol class="linhas">
+        <li><span><b>Os 3 primeiros segundos:</b> o gancho entra antes de qualquer "oi, gente". É ali que a pessoa decide se fica.</span></li>
+        <li><span><b>O meio:</b> corte colado na fala, sem respiração e sem "é…", e imagem que mostra o que você está falando.</span></li>
+        <li><span><b>O fim:</b> um convite claro, do jeito do seu objetivo. Seguir, comentar, marcar avaliação ou comprar.</span></li>
+        <li><span><b>O resto:</b> legenda que acompanha a voz, som só onde ajuda, cor corrigida e capa que funciona no grid.</span></li>
+      </ol>
+      <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20mandar%20meus%20v%C3%ADdeos%20pra%20voc%C3%AA%20editar." target="_blank" rel="noopener">Quero meus vídeos editados <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a></div>
     </div>
     <div class="lado">
       <div class="cel">
@@ -414,11 +417,10 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 
 <section class="faixa escura" aria-labelledby="t-grana">
   <div class="miolo centro">
-    <span class="olho">Monetização</span>
+    <span class="olho secao">Monetização</span>
     <h2 class="h2" id="t-grana">View só importa<br><em>quando vira dinheiro.</em></h2>
     <p class="sub">A Ju monetiza o conteúdo dela com produto digital, loja própria e link de afiliada. Somando tudo que já entrou:</p>
     <div class="grande num">R$ 31 mil</div>
-    <span class="mao">e contando</span>
     <div class="contas">
       <div class="conta"><small>Produtos digitais</small><b class="num">R$ 17.034</b></div>
       <div class="conta"><small>Loja própria na Shopee</small><b class="num">R$ 6.410</b></div>
@@ -432,41 +434,40 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 <section class="faixa agua quem" id="trabalhe" aria-labelledby="t-quem">
   <div class="miolo">
     <div class="quem-txt">
-      <span class="olho">Pra quem é</span>
+      <span class="olho secao">Pra quem é</span>
       <h2 class="h2" id="t-quem">Seu perfil não dá dinheiro ainda? <em>Isso é pra você.</em></h2>
-      <span class="mao">soa familiar?</span>
-      <ul class="checks">
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Você posta, e o vídeo não passa de 300 views.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Já tem seguidor, mas não sabe o que vender pra eles.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Quer gravar e editar sozinho, mas não sabe por onde começar.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Ou sabe que precisa de vídeo, mas não tem tempo de roteirizar e editar.</span></li>
-      </ul>
+      <ol class="linhas">
+        <li><span>Você posta, e o vídeo não passa de 300 views.</span></li>
+        <li><span>Já tem seguidor, mas não sabe o que vender pra eles.</span></li>
+        <li><span>Quer gravar e editar sozinho, mas não sabe por onde começar.</span></li>
+        <li><span>Ou sabe que precisa de vídeo, mas não tem tempo de roteirizar e editar.</span></li>
+      </ol>
     </div>
     <div class="ofertas">
       <div class="oferta">
         <span class="olho">Aprender a criar</span>
         <h3>Fazer os seus próprios vídeos</h3>
         <p>O processo que eu uso, em PDF: pensar o gancho, montar o roteiro e gravar com o celular sem travar. No checkout, o Kit Edição Viral entra por R$ 9,90 pra você editar também.</p>
-        <a class="btn" href="https://pay.kiwify.com.br/t6dSQe6?src=pagina-oferta" target="_blank" rel="noopener">Quero o Gravar Sem Travar · R$ 19,90 →</a>
+        <a class="btn" href="https://pay.kiwify.com.br/t6dSQe6?src=pagina-oferta" target="_blank" rel="noopener">Quero o Gravar Sem Travar · R$ 19,90 <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
         <a class="link" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20aprender%20a%20criar%20meus%20v%C3%ADdeos." target="_blank" rel="noopener">Prefere aula comigo? Chama no WhatsApp</a>
       </div>
       <div class="oferta">
         <span class="olho">Aprender a vender</span>
         <h3>Ganhar dinheiro com o seu perfil</h3>
         <p>Te mostro o caminho que a gente usa no @ordenhasdaju: vídeo que alcança gente nova, produto digital na Kiwify, loja e link de afiliado na Shopee.</p>
-        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20aprender%20a%20ganhar%20dinheiro%20com%20meu%20perfil." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20aprender%20a%20ganhar%20dinheiro%20com%20meu%20perfil." target="_blank" rel="noopener">Chamar no WhatsApp <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
       </div>
       <div class="oferta">
         <span class="olho">Consultoria individual</span>
         <h3>Um plano só pro seu perfil</h3>
         <p>A gente olha o seu perfil e os seus vídeos juntos e monta o que gravar, como editar e o que vender. Do seu jeito e no seu ritmo.</p>
-        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20saber%20da%20consultoria%20individual." target="_blank" rel="noopener">Quero a consultoria →</a>
+        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20saber%20da%20consultoria%20individual." target="_blank" rel="noopener">Quero a consultoria <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
       </div>
       <div class="oferta">
         <span class="olho">Contratar</span>
         <h3>Eu crio os vídeos pra você</h3>
         <p>Pra clínica, profissional de saúde, curso ou marca. Acompanhamento mensal ou vídeo avulso: roteiro, direção da gravação, edição, legenda e capa.</p>
-        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20contratar%20v%C3%ADdeos%20pro%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+        <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20contratar%20v%C3%ADdeos%20pro%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Chamar no WhatsApp <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
       </div>
     </div>
   </div>
@@ -474,21 +475,21 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 
 <section class="faixa" aria-labelledby="t-passos">
   <div class="miolo centro">
-    <span class="olho">Como fechar</span>
+    <span class="olho secao">Como fechar</span>
     <h2 class="h2" id="t-passos">Três passos e <em>tá no ar.</em></h2>
-    <ol class="passos">
-      <li><b>1</b><h3>Você me chama</h3><p>No WhatsApp, do seu jeito. Conta o que precisa e, se tiver, manda o seu perfil ou um vídeo de exemplo.</p></li>
-      <li><b>2</b><h3>A gente combina</h3><p>Te mando a proposta e o plano do vídeo: o que gravar, onde e quando fica pronto.</p></li>
-      <li><b>3</b><h3>Você aprova e posta</h3><p>Eu gravo ou edito, você confere, e o vídeo sai pronto pra postar.</p></li>
+    <ol class="linhas passos">
+      <li><div><h3>Você me chama</h3><p>No WhatsApp, do seu jeito. Conta o que precisa e, se tiver, manda o seu perfil ou um vídeo de exemplo.</p></div></li>
+      <li><div><h3>A gente combina</h3><p>Te mando a proposta e o plano do vídeo: o que gravar, onde e quando fica pronto.</p></div></li>
+      <li><div><h3>Você aprova e posta</h3><p>Eu gravo ou edito, você confere, e o vídeo sai pronto pra postar.</p></div></li>
     </ol>
-    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
   </div>
 </section>
 
 <section class="faixa agua" id="pdf" aria-labelledby="t-pdf">
   <div class="miolo">
     <div class="miolo centro" style="gap:16px">
-      <span class="olho">Produtos digitais</span>
+      <span class="olho secao">Produtos digitais</span>
       <h2 class="h2" id="t-pdf">Pra começar <em>hoje.</em></h2>
       <p class="sub">Levando um, o outro aparece no checkout por R$ 9,90.</p>
     </div>
@@ -504,7 +505,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
             <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>O set em 5 minutos: luz, som, enquadramento e teleprompter</span></li>
             <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Como gravar com paciente, com termo de autorização</span></li>
           </ul>
-          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" href="https://pay.kiwify.com.br/t6dSQe6?src=pagina" target="_blank" rel="noopener">Quero o Gravar →</a></div>
+          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" href="https://pay.kiwify.com.br/t6dSQe6?src=pagina" target="_blank" rel="noopener">Quero o Gravar <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a></div>
         </div>
       </article>
       <article class="produto">
@@ -518,7 +519,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
             <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Cor no texto e música caindo na batida do corte</span></li>
             <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Serve pra CapCut, Edits, InShot ou qualquer editor</span></li>
           </ul>
-          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" href="https://pay.kiwify.com.br/fmjxVso?src=pagina" target="_blank" rel="noopener">Quero o Kit →</a></div>
+          <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" href="https://pay.kiwify.com.br/fmjxVso?src=pagina" target="_blank" rel="noopener">Quero o Kit <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a></div>
         </div>
       </article>
     </div>
@@ -527,7 +528,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 
 <section class="faixa" aria-labelledby="t-faq">
   <div class="miolo centro">
-    <span class="olho">Dúvidas</span>
+    <span class="olho secao">Dúvidas</span>
     <h2 class="h2" id="t-faq">Antes de <em>chamar.</em></h2>
     <div class="faq">
       <details><summary>Funciona pro meu nicho?</summary><p>Edito vídeo de saúde, maternidade, curso e negócio local. O que muda de um nicho pro outro é o roteiro e a identidade: cada cliente tem a sua fonte, a sua cor e o seu jeito de legenda.</p></details>
@@ -543,7 +544,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 
 <section class="faixa escura" aria-labelledby="t-fala">
   <div class="miolo centro">
-    <span class="olho ink">Sem formulário</span>
+    <span class="olho secao">Sem formulário</span>
     <h2 class="h2" id="t-fala">É só me dizer <em>o que você quer.</em></h2>
     <p class="sub">Do seu jeito, no WhatsApp. O tipo de coisa que chega pra mim:</p>
     <div class="fichas" aria-hidden="true">
@@ -556,7 +557,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         <span>"o que eu vendo com 2 mil seguidores?"</span><span>"quero aparecer pra quem mora perto"</span><span>"como faço um gancho bom?"</span><span>"posto todo dia e nada"</span><span>"como gravo com o celular?"</span>
       </div>
     </div>
-    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp <i aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
     <span class="zap num">(38) 99999-7025</span>
   </div>
 </section>
