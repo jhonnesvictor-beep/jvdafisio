@@ -189,7 +189,7 @@ a { color: inherit }
 
 /* produtos digitais */
 .produtos { display: grid; gap: 16px; width: 100% }
-@media (min-width: 980px) { .produtos { grid-template-columns: repeat(3, 1fr) } .produtos .produto { grid-template-columns: 1fr; align-content: start } }
+@media (min-width: 980px) { .produtos { grid-template-columns: repeat(2, 1fr); max-width: 820px; margin-inline: auto } .produtos .produto { grid-template-columns: 1fr; align-content: start } }
 .produto { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; display: grid; gap: 18px; align-items: center; min-width: 0 }
 @media (min-width: 560px) { .produto { grid-template-columns: 170px 1fr } }
 .produto img { width: 100%; max-width: 220px; aspect-ratio: 1 / 1.414; object-fit: cover; border-radius: 8px; box-shadow: var(--sombra); justify-self: center }
@@ -490,7 +490,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
     <div class="miolo centro" style="gap:16px">
       <span class="olho">Produtos digitais</span>
       <h2 class="h2" id="t-pdf">Pra começar <em>hoje.</em></h2>
-      <p class="sub">Levando um, os outros aparecem no checkout com desconto: o Gravar e o Kit por R$ 9,90, o Perfil por R$ 19,90.</p>
+      <p class="sub">Levando um, o outro aparece no checkout por R$ 9,90.</p>
     </div>
     <div class="produtos">
       <article class="produto">
@@ -519,20 +519,6 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
             <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Serve pra CapCut, Edits, InShot ou qualquer editor</span></li>
           </ul>
           <div class="acoes"><span class="preco num">R$ 19,90</span><a class="btn" href="https://pay.kiwify.com.br/fmjxVso?src=pagina" target="_blank" rel="noopener">Quero o Kit →</a></div>
-        </div>
-      </article>
-      <article class="produto">
-        <img src="midia/perfil_capa.jpg" alt="Capa do PDF Perfil que Dá Dinheiro" loading="lazy">
-        <div class="produto-txt">
-          <span class="olho">PDF · 29 páginas</span>
-          <h3>Perfil que Dá Dinheiro</h3>
-          <p>Do zero ao primeiro real com conteúdo, do jeito que o Instagram e o TikTok funcionam hoje.</p>
-          <ul class="checks">
-            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Como a rede decide quem vê o seu vídeo</span></li>
-            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Quatro jeitos de ganhar dinheiro com conteúdo</span></li>
-            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Um plano de 30 dias pra seguir</span></li>
-          </ul>
-          <div class="acoes"><span class="preco num">R$ 37</span><a class="btn" href="https://pay.kiwify.com.br/BHx187p?src=pagina" target="_blank" rel="noopener">Quero o Perfil →</a></div>
         </div>
       </article>
     </div>
