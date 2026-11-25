@@ -206,6 +206,17 @@ a { color: inherit }
 .passos h3 { font-size: 1.6rem; line-height: 1.1 }
 .passos p { color: var(--ink-2) }
 
+/* objetivo: um card por tipo de vídeo */
+.objetivos { display: grid; grid-auto-flow: column; grid-auto-columns: 80%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 8px 16px 12px; margin-inline: -16px; width: calc(100% + 32px); scrollbar-width: thin; text-align: left }
+@media (min-width: 900px) { .objetivos { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin-inline: auto; padding: 8px 0 0; width: 100%; max-width: 1040px } }
+.objetivo { scroll-snap-align: start; display: grid; gap: 12px; align-content: start; min-width: 0; background: var(--cartao); border: 1px solid var(--linha); border-radius: 24px; padding: 16px; box-shadow: var(--sombra) }
+.objetivo .tela { width: 100%; max-width: 240px; margin-inline: auto; box-shadow: none }
+.objetivo h3 { font: 400 1.7rem/1.05 var(--serif) }
+.objetivo h3 em { color: var(--acento) }
+.objetivo p { color: var(--ink-2); font-size: .95rem }
+.objetivo .serve { border-top: 1px dashed var(--linha); padding-top: 10px; font: 600 .78rem/1.4 var(--mono); color: var(--ink) }
+.objetivo .serve span { color: var(--acento) }
+
 /* botão fixo do WhatsApp */
 .zap-fixo { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20; display: inline-flex; align-items: center; gap: 8px; background: #1FA855; color: #FFFFFF; font: 700 .9rem/1 var(--body); text-decoration: none; padding: 13px 18px; border-radius: 999px; box-shadow: 0 10px 28px -8px rgba(0, 0, 0, .45) }
 .zap-fixo svg { width: 20px; height: 20px; fill: currentColor }
@@ -236,13 +247,13 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
       <p class="sub">Sou o João Vitor, de Montes Claros. Faço os vídeos de uma clínica de fisioterapia, comerciais, divulgação de curso e cobertura de evento, e ensino quem quer aprender a fazer os próprios. Os números desta página saíram direto das plataformas.</p>
       <div class="acoes">
         <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20conversar." target="_blank" rel="noopener">Chamar no WhatsApp →</a>
-        <a class="link" href="#trabalhos">Ver trabalhos</a>
+        <a class="link" href="#objetivo">Ver trabalhos</a>
       </div>
       <div class="fontes-dado">Números de <span>Instagram</span> <span>TikTok</span> <span>Kiwify</span> <span>Shopee</span></div>
     </div>
     <div class="palco">
       <div class="cel">
-        <video data-auto src="midia/apresentacao.mp4" poster="midia/apresentacao.jpg" muted loop playsinline preload="metadata" aria-label="Montagem com o começo de seis trabalhos"></video>
+        <video data-auto src="midia/apresentacao.mp4" poster="midia/apresentacao.jpg" muted loop playsinline preload="metadata" aria-label="Montagem com o começo de seis vídeos"></video>
       </div>
       <div class="prova">
         <small><i class="ponto">●</i> FisioGolden Saúde</small>
@@ -266,6 +277,50 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   </div>
 </div>
 
+<section class="faixa" id="objetivo" aria-labelledby="t-objetivo">
+  <div class="miolo centro">
+    <span class="olho">Primeiro, o objetivo</span>
+    <h2 class="h2" id="t-objetivo">Todo vídeo tem<br><em>um trabalho.</em></h2>
+    <p class="sub">Vídeo pra crescer, vídeo pra trazer paciente e vídeo pra vender não se gravam nem se editam do mesmo jeito. Antes de gravar, a gente decide qual é o seu.</p>
+    <div class="objetivos">
+      <article class="objetivo">
+        <span class="olho">Objetivo · reter</span>
+        <div class="tela">
+          <video data-auto src="midia/oreo.mp4" poster="midia/oreo.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo Coluna com Oreo"></video>
+          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>2,6 mi</span>
+        </div>
+        <h3>Segurar até o <em>último segundo.</em></h3>
+        <p>Nenhuma palavra falada: a imagem prende no primeiro segundo e o corte não deixa respirar. Quem começa assiste até o fim, e aí o Instagram entrega pra muito mais gente.</p>
+        <div class="meta"><span class="forte">Coluna com Oreo</span><span>Insta 2,1 mi · TikTok 554 mil</span><a href="https://www.instagram.com/reel/DeKHw-IyNRw/" target="_blank" rel="noopener">Ver ↗</a></div>
+        <div class="serve">Serve pra: <span>crescer e ser descoberto</span></div>
+      </article>
+      <article class="objetivo">
+        <span class="olho">Objetivo · atrair paciente</span>
+        <div class="tela">
+          <video data-auto src="midia/fg_roxo.mp4" poster="midia/fg_roxo.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo da FisioGolden sobre o roxo depois da cirurgia de LCA"></video>
+          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>5.954</span>
+        </div>
+        <h3>Falar com quem <em>mora perto.</em></h3>
+        <p>O rosto do fisioterapeuta, uma dúvida real de quem operou e a cidade no texto. Faz menos view que um viral, mas é view de quem pode marcar avaliação.</p>
+        <div class="meta"><span class="forte">FisioGolden Saúde</span><span>Roxo depois da cirurgia</span><a href="https://www.instagram.com/reel/DfSLUOfT3OY/" target="_blank" rel="noopener">Ver ↗</a></div>
+        <div class="serve">Serve pra: <span>encher a agenda da clínica</span></div>
+      </article>
+      <article class="objetivo">
+        <span class="olho">Objetivo · vender</span>
+        <div class="tela">
+          <video data-auto src="midia/eb_promo.mp4" poster="midia/eb_promo.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo de divulgação da Formação em Osteopatia"></video>
+          
+        </div>
+        <h3>Fazer a pessoa <em>querer entrar.</em></h3>
+        <p>Música que cresce, a técnica em câmera lenta e o convite no fim. Ninguém precisa falar: a imagem mostra o que o aluno vai viver e vende o curso.</p>
+        <div class="meta"><span class="forte">Ebrafim</span><span>Formação em Osteopatia</span></div>
+        <div class="serve">Serve pra: <span>lançar curso, produto ou evento</span></div>
+      </article>
+    </div>
+    <a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina.%20Meu%20objetivo%20com%20v%C3%ADdeo%20%C3%A9%3A%20" target="_blank" rel="noopener">Me conta o seu objetivo →</a>
+  </div>
+</section>
+
 <section class="faixa agua clinica" id="trabalhos" aria-labelledby="t-clinica">
   <div class="miolo">
     <div class="lado">
@@ -280,7 +335,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
       <p class="legenda">Mesma clínica, mesmo fisioterapeuta. Toque pra alternar.<br>O "depois" teve 233 curtidas e 76 comentários.</p>
     </div>
     <div class="clinica-txt">
-      <span class="olho">Trabalho para clínica</span>
+      <span class="olho">Atrair paciente · trabalho para clínica</span>
       <h2 class="h2" id="t-clinica">Do vídeo de 1,8 mil views para <em>9 mil.</em></h2>
       <p class="sub">FisioGolden Saúde, clínica de fisioterapia esportiva do Jefferson Teixeira, em Montes Claros. No segundo vídeo que fizemos juntos, o Reel fez 5 vezes o que um vídeo típico do perfil fazia antes.</p>
       <div class="barras" role="img" aria-label="Views por vídeo: antes, mediana de 1.817; primeiro vídeo com a gente, 3.687; segundo, 9.037; o do roxo depois da cirurgia, 5.954">
@@ -301,7 +356,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
   <div class="miolo centro">
     <span class="olho">Vídeos avulsos</span>
     <h2 class="h2" id="t-avulso">Também faço vídeo <em>sob encomenda.</em></h2>
-    <p class="sub">Não precisa de pacote mensal. Faço o vídeo que você precisa: comercial, divulgação de curso, cobertura de evento ou depoimento. Alguns que já fiz:</p>
+    <p class="sub">Não precisa de pacote mensal. Faço o vídeo que você precisa: comercial, divulgação de curso, cobertura de evento ou depoimento. Alguns que já fiz, além dos de cima:</p>
     <div class="trio">
       <article class="reel">
         <div class="tela">
@@ -309,13 +364,6 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
         </div>
         <h3>Comercial do novo local de atendimento na academia WCT</h3>
         <div class="meta"><span class="forte">Pedro Almeida</span><span>comercial</span></div>
-      </article>
-      <article class="reel">
-        <div class="tela">
-          <video data-auto src="midia/eb_promo.mp4" poster="midia/eb_promo.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo de divulgação da Formação em Osteopatia"></video>
-        </div>
-        <h3>Divulgação da Formação em Osteopatia</h3>
-        <div class="meta"><span class="forte">Ebrafim</span><span>vídeo de venda</span></div>
       </article>
       <article class="reel">
         <div class="tela">
@@ -339,14 +387,14 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
 <section class="faixa agua clinica invertida" id="edicao" aria-labelledby="t-edicao">
   <div class="miolo">
     <div class="clinica-txt">
-      <span class="olho">Edição</span>
-      <h2 class="h2" id="t-edicao">O mesmo vídeo, <em>antes e depois.</em></h2>
-      <p class="sub">Um é o que eu gravei no celular. O outro é o que foi pro ar. É isso que você recebe quando me manda o seu vídeo:</p>
+      <span class="olho">Gravação e edição</span>
+      <h2 class="h2" id="t-edicao">O que segura a pessoa <em>até o fim.</em></h2>
+      <p class="sub">Gravar bem dá a matéria-prima: luz, som e a frase certa. A edição decide se a pessoa fica. Ao lado, o mesmo vídeo como saiu do celular e como foi pro ar. É isso que entra no seu:</p>
       <ul class="checks">
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Corte colado na fala, sem respiração e sem "é…" no meio.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Legenda que acompanha a sua voz e títulos com a frase que importa.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Imagem de apoio que mostra o que você está falando, e som só onde ajuda.</span></li>
-        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span>Cor corrigida e capa que funciona no grid do seu perfil.</span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>Os 3 primeiros segundos:</b> o gancho entra antes de qualquer "oi, gente". É ali que a pessoa decide se fica.</span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>O meio:</b> corte colado na fala, sem respiração e sem "é…", e imagem que mostra o que você está falando.</span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>O fim:</b> um convite claro, do jeito do seu objetivo. Seguir, comentar, marcar avaliação ou comprar.</span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10l5 5 9-10"/></svg><span><b>O resto:</b> legenda que acompanha a voz, som só onde ajuda, cor corrigida e capa que funciona no grid.</span></li>
       </ul>
       <div class="acoes"><a class="btn" href="https://wa.me/5538999997025?text=Oi%2C%20Jo%C3%A3o%21%20Vi%20sua%20p%C3%A1gina%20e%20quero%20mandar%20meus%20v%C3%ADdeos%20pra%20voc%C3%AA%20editar." target="_blank" rel="noopener">Quero meus vídeos editados →</a></div>
     </div>
@@ -361,49 +409,6 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
       </div>
       <p class="legenda">Toque pra alternar. Vídeo "Tenho todos", @jvdafisio.</p>
     </div>
-  </div>
-</section>
-
-<section class="faixa" id="videos" aria-labelledby="t-videos">
-  <div class="miolo centro">
-    <span class="olho">O perfil que eu construo</span>
-    <h2 class="h2" id="t-videos">Quatro vídeos,<br><em>3 milhões de views.</em></h2>
-    <p class="sub">Além dos clientes, eu cuido do @ordenhasdaju, o perfil de amamentação e rotina de bebê da Ju. É ali que eu testo o que depois levo pros clientes. Toque em "som" pra ouvir, ou abra o original.</p>
-    <div class="trilho">
-      <article class="reel">
-        <div class="tela">
-          <video data-auto src="midia/ju_ep1.mp4" poster="midia/ju_ep1.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo EP. 1"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>2,2 mi</span>
-        </div>
-        <h3>O que meu bebê de 6 meses vai comer hoje</h3>
-        <div class="meta"><span>TikTok 1,6 mi · Insta 641 mil</span><a href="https://www.tiktok.com/@ordenhasdaju/video/7671372583694028040" target="_blank" rel="noopener">TikTok ↗</a><a href="https://www.instagram.com/reel/DbwCOkUoHRQ/" target="_blank" rel="noopener">Insta ↗</a></div>
-      </article>
-      <article class="reel">
-        <div class="tela">
-          <video data-auto src="midia/ju_powerpump.mp4" poster="midia/ju_powerpump.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo sobre Power Pump"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>493 mil</span>
-        </div>
-        <h3>Já ouviu falar do Power Pump?</h3>
-        <div class="meta"><span>Insta 493 mil</span><a href="https://www.instagram.com/reel/DXlzFuuCNAe/" target="_blank" rel="noopener">Insta ↗</a></div>
-      </article>
-      <article class="reel">
-        <div class="tela">
-          <video data-auto src="midia/ju_ep2.mp4" poster="midia/ju_ep2.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo EP. 2"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>241 mil</span>
-        </div>
-        <h3>O que meu bebê de 7 meses vai comer hoje</h3>
-        <div class="meta"><span>Insta 196 mil · TikTok 45 mil</span><a href="https://www.instagram.com/reel/DdRNTUTORIb/" target="_blank" rel="noopener">Insta ↗</a><a href="https://www.tiktok.com/@ordenhasdaju/video/7684414473322466568" target="_blank" rel="noopener">TikTok ↗</a></div>
-      </article>
-      <article class="reel">
-        <div class="tela">
-          <video data-auto src="midia/ju_flange.mp4" poster="midia/ju_flange.jpg" muted loop playsinline preload="none" aria-label="Trecho do vídeo sobre como medir a flange"></video>
-          <span class="views num"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0l9 5-9 5z"/></svg>83 mil</span>
-        </div>
-        <h3>Como medir a flange da bomba</h3>
-        <div class="meta"><span>TikTok, 3,2 mil curtidas</span><a href="https://www.tiktok.com/@ordenhasdaju/video/7610619271927844103" target="_blank" rel="noopener">TikTok ↗</a></div>
-      </article>
-    </div>
-    <div class="nota-mao"><svg viewBox="0 0 40 28" aria-hidden="true"><path d="M38 6C26 2 12 6 6 20M6 20l-2-9M6 20l9-3"/></svg><span class="mao">os primeiros segundos fazem o trabalho</span></div>
   </div>
 </section>
 
@@ -533,7 +538,7 @@ footer .miolo { display: flex; flex-wrap: wrap; justify-content: space-between; 
     <h2 class="h2" id="t-faq">Antes de <em>chamar.</em></h2>
     <div class="faq">
       <details><summary>Funciona pro meu nicho?</summary><p>Edito vídeo de saúde, maternidade, curso e negócio local. O que muda de um nicho pro outro é o roteiro e a identidade: cada cliente tem a sua fonte, a sua cor e o seu jeito de legenda.</p></details>
-      <details><summary>Preciso aparecer no vídeo?</summary><p>Não. Dá pra fazer com objeto, tela, narração ou com quem trabalha com você. O vídeo de divulgação da Formação em Osteopatia, por exemplo, não tem ninguém falando.</p></details>
+      <details><summary>Preciso aparecer no vídeo?</summary><p>Não. Dá pra fazer com objeto, tela, narração ou com quem trabalha com você. O vídeo da coluna com Oreo, o de 2,6 milhões de views, não tem ninguém falando.</p></details>
       <details><summary>Como eu mando o vídeo?</summary><p>Pelo WhatsApp ou por um link do Google Drive, do jeito que saiu do celular, sem editar nada.</p></details>
       <details><summary>Em quanto tempo fica pronto?</summary><p>A edição fica pronta em até 3 dias úteis. Se for urgente, me fala no WhatsApp que a gente vê o prazo.</p></details>
       <details><summary>E se eu não gostar?</summary><p>Cada vídeo tem uma rodada de ajuste inclusa. Você vê antes de postar e me fala o que mudar.</p></details>
